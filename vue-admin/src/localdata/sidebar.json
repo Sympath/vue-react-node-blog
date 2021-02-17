@@ -1,0 +1,216 @@
+
+    {
+        "data":[
+            {
+                "id":1,
+                "title":"个人管理",
+                "icon":"el-icon-s-order",
+                "children":[
+                    {
+                        "id":11,
+                        "title":"个人信息",
+                        "spellname":"Information",
+                        "routing":"/personal/information"
+
+                    },
+                   
+                    {
+                        "id":12,
+                        "title":"个人标签",
+                        "spellname":"Label",
+                        "routing":"/personal/label"
+
+                    },
+                    {
+                        "id":13,
+                        "title":"个人经历",
+                        "spellname":"Experience",
+                        "routing":"/personal/experience"
+
+                    }
+                ]
+            },
+            {
+                "id":2,
+                "title":"公告管理",
+                "icon":"el-icon-s-opportunity",
+                "children":[
+                 {
+                     "id":21,
+                     "title":"公告发布",
+                     "spellname":"Notice",
+                     "routing":"/publish/notice"
+ 
+                 }
+                ]
+            },
+            {
+                "id":3,
+                "title":"博文管理",
+                "icon":"el-icon-s-data",
+                "children":[
+                    {
+                        "id":31,
+                        "title":"新建文章",
+                        "spellname":"ArticleCreate",
+                        "routing":"/article/create"
+
+                    },
+                    {
+                        "id":32,
+                        "title":"修改文章",
+                        "spellname":"ArticleEdit",
+                        "routing":"/article/edit"
+
+                    },
+                    {
+                        "id":33,
+                        "title":"文章列表",
+                        "spellname":"ArticleList",
+                        "routing":"/article/list"
+
+                    }
+                ]
+            },
+           {
+               "id":4,
+               "title":"项目管理",
+               "icon":"el-icon-s-platform",
+               "children":[
+                {
+                    "id":41,
+                    "title":"新建项目",
+                    "spellname":"ProjectCreate",
+                    "routing":"/project/create"
+                },
+                {
+                    "id":42,
+                    "title":"修改项目",
+                    "spellname":"ProjectEdit",
+                    "routing":"/project/edit"
+                },
+                {
+                    "id":43,
+                    "title":"项目列表",
+                    "spellname":"ProjectList",
+                    "routing":"/project/list"
+                }
+               ]
+           },
+            
+         
+           
+           
+            {
+                "id":5,
+                "title":"用户管理",
+                "icon":"el-icon-s-flag",
+                "children":[
+                    {
+                        "id":51,
+                        "title":"用户列表",
+                        "spellname":"UserList",
+                        "routing":"/user/list"
+                    },
+                    {
+                        "id":52,
+                        "title":"用户留言",
+                        "spellname":"UserMessage",
+                        "routing":"/user/message"
+                    },
+                    {
+                        "id":53,
+                        "title":"用户评论",
+                        "spellname":"UserComment",
+                        "routing":"/user/comment"
+                    },
+                    {
+                        "id":54,
+                        "title":"搜索历史",
+                        "spellname":"SearchHistory",
+                        "routing":"/user/search"
+                    }
+                   ]
+            },
+            {
+                "id":5,
+                "title":"友链管理",
+                "icon":"el-icon-link",
+                "children":[
+                    {
+                        "id":7,
+                        "title":"友情链接",
+                        "spellname":"FriendLink",
+                        "routing":"/firend/link"
+                    }
+                    
+                   ]
+            },
+            {
+                "id":6,
+                "title":"系统管理",
+                "icon":"el-icon-camera-solid",
+                "children":[
+                    
+                    {
+                        "id":61,
+                        "title":"密码修改",
+                        "spellname":"Reset",
+                        "routing":"/reset"
+                    },
+                    {
+                        "id":62,
+                        "title":"管理员注册",
+                        "spellname":"Register",
+                        "routing":"/register"
+                    }
+                ]
+            },
+            {
+                "id":7,
+                "title":"统计报表",
+                "icon":"el-icon-s-check",
+                "children":[
+                     
+                    {
+                        "id":71,
+                        "title":"用户统计",
+                        "spellname":"UserReport",
+                        "routing":"/report/user"
+                    },
+                    {
+                        "id":72,
+                        "title":"留言统计",
+                        "spellname":"MessageReport",
+                        "routing":"/report/message"
+                    },
+                    {
+                        "id":73,
+                        "title":"点赞统计",
+                        "spellname":"LikeReport",
+                        "routing":"/report/like"
+                    },
+                   
+                    {
+                        "id":74,
+                        "title":"评论统计",
+                        "spellname":"CommentReport",
+                        "routing":"/report/comment"
+                    },
+                    {
+                        "id":8,
+                        "title":"浏览量统计",
+                        "spellname":"ReadReport",
+                        "routing":"/report/read"
+                    }
+                    
+                    
+                   ]
+            }
+            
+           
+            
+            
+           
+        ]
+    }
