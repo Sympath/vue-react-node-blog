@@ -3,9 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// 引入交互
-import axios from 'axios'
-Vue.prototype.$http= axios
+// 引入全局可使用的 service
+import service from '@/utils/request'
+Vue.prototype.$service= service
 
 // 引入elementui 
 import './utils/element.js'

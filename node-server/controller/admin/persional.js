@@ -11,7 +11,9 @@ class Personal {
   async adminEditBloggerInfor(req, res) {
     try {
       const newinfor = await BloggerInformation.update(req.body);
-      res.send(newinfor);
+      res.send({
+        message: "个人信息保存成功"
+      });
     } catch (error) {}
   }
 }

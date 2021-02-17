@@ -12,12 +12,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.set('secret','vuereactnodeblog')
 
 
-
+// 引入mongoose
 require('./mongodb/db')(app)
 
-
+// 引入路由
 import router from './routes/index.js';
 router(app)
+
 
 app.listen(3000,()=>{
     console.log( 'App Listening on port 3000');

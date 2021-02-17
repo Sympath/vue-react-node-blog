@@ -34,6 +34,7 @@
             v-model="form.birthday"
             type="date"
             placeholder="选择日期"
+            value-format="yyyy-MM-dd"
           >
           </el-date-picker>
         </el-form-item>
@@ -41,9 +42,9 @@
         <el-form-item label="头像">
           <el-upload
             class="avatar-uploader"
-            :action="$http.defaults.baseURL + '/upload'"
+            :action="$service.defaults.baseURL + '/admin/upload'"
             :show-file-list="false"
-            :on-success="(res) => $set(item, 'image', res.url)"
+            :on-success="(res) => $set(form, 'image', res.url)"
           >
             <img v-if="form.image" :src="form.image" class="image" />
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -106,22 +107,36 @@
       </el-form>
     </div>
     <div class="personal-information-bottom">
-      <el-button class="save" type="primary">保存</el-button>
+      <el-button class="save" type="primary" @click="postInformation"
+        >保存</el-button
+      >
       <el-button class="cancel" type="primary">取消</el-button>
     </div>
   </div>
 </template>
 <script>
-
-import {getBloggerInformation } from '@/api/api'
+import { getBloggerInformation, postBloggerInformation } from "@/api/api";
 export default {
   data() {
     return {
       form: {
-        nackname: "",
+        nickname: "",
         name: "",
-        gender:"",
-       
+        gender: "",
+        birthday: "",
+        image: "",
+        live: "",
+        nowlive: "",
+        company: "",
+        profession: "",
+        school: "",
+        major: "",
+        constellation: "",
+        wx: "",
+        email: "",
+        character: "",
+        hobby: "",
+        motto: ""
       },
       sex: [
         {
@@ -140,14 +155,23 @@ export default {
     };
   },
   created() {
-      this.init()
+    this.init();
   },
   methods: {
-    init(){
-        getBloggerInformation().then(res=>{
-            console.log(res);
-        })
-    }
+    init() {
+      getBloggerInformation().then((res) => {
+        this.form=res.data[0]
+      });
+    },
+    postInformation() {
+      postBloggerInformation(this.form).then((res) => {
+         this.$message({
+          message: res.data.message,
+          type: 'success'
+        });
+        this.init()
+      });
+    },
   },
 };
 </script>
@@ -172,6 +196,11 @@ export default {
   text-align: center;
 }
 .avatar {
+  width: 153px;
+  height: 153px;
+  display: block;
+}
+.image{
   width: 153px;
   height: 153px;
   display: block;

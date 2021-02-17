@@ -20,3 +20,12 @@ export function getBloggerInformation(query){
     params:query
   })
 }
+
+// 个人信息,建立(修改)PC以及H5的博主个人信息
+export function postBloggerInformation(data){
+  return request({
+    url:blogger_infor,
+    method:'post',
+    data:data
+  })
+}
