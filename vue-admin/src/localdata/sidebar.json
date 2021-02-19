@@ -50,6 +50,13 @@
                 "icon":"el-icon-s-data",
                 "children":[
                     {
+                        "id":30,
+                        "title":"文章分类",
+                        "spellname":"ArticleType",
+                        "routing":"/article/type"
+
+                    },
+                    {
                         "id":31,
                         "title":"新建文章",
                         "spellname":"ArticleCreate",

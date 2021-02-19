@@ -72,7 +72,10 @@
       </el-header>
 
       <el-main>
-        <router-view></router-view>
+          
+            <router-view ></router-view>
+          
+        
       </el-main>
     </el-container>
   </el-container>
@@ -82,9 +85,7 @@
 import sidedata from "@/localdata/sidebar.json";
 import BreadCrump from "@/components/common/BreadCrump";
 import Avatar from "@/components/common/Avatar";
-import Screenfull from '@/components/common/ScreenFull'
-
-
+import Screenfull from "@/components/common/ScreenFull";
 
 export default {
   data() {
@@ -96,7 +97,7 @@ export default {
   components: {
     "h-bread": BreadCrump,
     "h-avatar": Avatar,
-    "h-screenfull":Screenfull
+    "h-screenfull": Screenfull,
   },
   created() {
     this.sidedata = sidedata.data;
@@ -105,7 +106,6 @@ export default {
     _isShow() {
       this.isCollapse = !this.isCollapse;
     },
-    
   },
 };
 </script>
@@ -142,7 +142,7 @@ export default {
         width: 45px;
       }
     }
-    .header-right{
+    .header-right {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -150,6 +150,4 @@ export default {
     }
   }
 }
-
-
 </style>

@@ -69,6 +69,17 @@ const routes = [
 				}
         
       },
+       // 文章分类
+       {
+        path: "/article/type",
+        name: "ArticleType",
+        component: () => import("../views/article/articleType.vue"),
+        meta: {
+          Cname:'博文管理',
+					cname: '文章分类',
+         
+				}
+      },
       // 新建文章
       {
         path: "/article/create",

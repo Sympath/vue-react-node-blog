@@ -21,7 +21,9 @@ const bloggerInformationSchema = new Schema({
   email:String,
   character:String,
   hobby:String,
-  motto:String
+  motto:String,
+  label:Array,
+  experience:String
 });
 
 bloggerInformationSchema.index({ id: 1 });

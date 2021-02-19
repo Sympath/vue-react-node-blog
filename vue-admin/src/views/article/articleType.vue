@@ -1,12 +1,13 @@
 <template>
-  <div class="personal-label">
+  <div class="article-type">
     <el-tag
-      type="success"
+    
+      effect="dark"
       style="margin-top:20px"
       :key="tag"
-      v-for="tag in bloggerLabels"
+      v-for="tag in articleTypes"
       closable
-      :disable-transitions="false"
+      :disable-transitions="true"
       @close="handleClose(tag)"
     >
       {{ tag }}
@@ -22,16 +23,16 @@
     >
     </el-input>
     <el-button v-else class="button-new-tag" size="small" @click="showInput"
-      >+ 新建标签</el-button
+      >+ 新建文章分类</el-button
     >
   </div>
 </template>
 <script>
-import { postBloggerLabel, getBloggerLabel } from "@/api/api";
+import { postArticleType, getArticleType } from "@/api/api";
 export default {
   data() {
     return {
-      bloggerLabels: null,
+      articleTypes: null,
       inputVisible: false,
       inputValue: "",
     };
@@ -41,8 +42,8 @@ export default {
   },
   methods: {
     handleClose(tag) {
-      this.bloggerLabels.splice(this.bloggerLabels.indexOf(tag), 1);
-      postBloggerLabel(this.bloggerLabels).then((res) => {
+      this.articleTypes.splice(this.articleTypes.indexOf(tag), 1);
+      postArticleType(this.articleTypes).then((res) => {
         this.$message({
           message: res.data.message,
           type: "success",
@@ -59,11 +60,11 @@ export default {
     handleInputConfirm() {
       let inputValue = this.inputValue;
       if (inputValue) {
-        this.bloggerLabels.push(inputValue);
+        this.articleTypes.push(inputValue);
       }
       this.inputVisible = false;
       this.inputValue = "";
-      postBloggerLabel(this.bloggerLabels).then((res) => {
+      postArticleType(this.articleTypes).then((res) => {
         this.$message({
           message: res.data.message,
           type: "success",
@@ -73,28 +74,22 @@ export default {
     handleInputConfirm1() {
       let inputValue = this.inputValue;
       if (inputValue) {
-        this.bloggerLabels.push(inputValue);
+        this.articleTypes.push(inputValue);
       }
       this.inputVisible = false;
       this.inputValue = "";
-      postBloggerLabel(this.bloggerLabels).then(() => {
-        // this.$message({
-        //   message: res.data.message,
-        //   type: "success",
-        // });
-      });
+      postArticleType(this.articleTypes).then(() => {});
     },
     init() {
-      getBloggerLabel().then((res) => {
-        console.log(res.data);
-        this.bloggerLabels = res.data;
+      getArticleType().then((res) => {
+        this.articleTypes = res.data;
       });
     },
   },
 };
 </script>
 <style lang="scss">
-.personal-label {
+.article-type {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,12 +100,10 @@ export default {
   margin-right: auto;
   .el-tag + .el-tag {
     margin-left: 10px;
+   
   }
-  .el-tag {
-    
-    height: 35px;
-    font-size: 20px;
-  }
+ 
+
   .button-new-tag {
     margin-left: 10px;
     height: 32px;
