@@ -25,14 +25,29 @@
           v-model="form.isPublic"
           active-color="#13ce66"
           inactive-color="#ff4949"
-          width="45"
+          :width="45"
         >
         </el-switch>
+      </el-form-item>
+      <el-form-item label="文章封面" class="cover">
+        <el-upload
+          class="upload-demo"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          multiple
+          :limit="3"
+        >
+          <el-button size="small" type="primary">点击上传(不必须)</el-button>
+        </el-upload>
       </el-form-item>
     </div>
 
     <el-form-item label="文章内容">
-      <mavon-editor class="editor" ref="editor" v-model="form.article" placeholder="写一篇文章吧....">
+      <mavon-editor
+        class="editor"
+        ref="editor"
+        v-model="form.article"
+        placeholder="写一篇文章吧...."
+      >
       </mavon-editor>
     </el-form-item>
 
@@ -54,9 +69,9 @@ export default {
         article: "",
         isPublic: true,
         title: "",
-        author: "",
+        author: "付金廷",
         category: "",
-        create_time:dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
+        create_time: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
       },
       article_types: null,
     };
@@ -92,7 +107,6 @@ export default {
             message: "已取消",
           });
         });
-        
     },
     getArticleCate() {
       getArticleType().then((res) => {
@@ -110,7 +124,7 @@ export default {
   .article-t-a {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 99%;
     .author {
       width: 200px;
     }
@@ -122,7 +136,7 @@ export default {
     }
   }
   .editor {
-    min-height: 520px;
+    min-height: 515px;
   }
   .btn {
     text-align: center;

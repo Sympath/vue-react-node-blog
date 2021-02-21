@@ -136,7 +136,7 @@ export default {
         email: "",
         character: "",
         hobby: "",
-        motto: ""
+        motto: "",
       },
       sex: [
         {
@@ -160,16 +160,16 @@ export default {
   methods: {
     init() {
       getBloggerInformation().then((res) => {
-        this.form=res.data[0]
+        this.form = res.data[0];
       });
     },
     postInformation() {
       postBloggerInformation(this.form).then((res) => {
-         this.$message({
+        this.$message({
           message: res.data.message,
-          type: 'success'
+          type: "success",
         });
-        this.init()
+        this.init();
       });
     },
   },
@@ -200,16 +200,10 @@ export default {
   height: 153px;
   display: block;
 }
-.image{
+.image {
   width: 153px;
   height: 153px;
   display: block;
-}
-
-// 修改文本域宽度,高度
-.el-textarea__inner {
-  width: 300px;
-  height: 146px;
 }
 
 // 主要样式
@@ -234,6 +228,11 @@ export default {
   margin-top: 30px;
   .cancel {
     margin-left: 30px;
+  }
+  // 修改文本域宽度,高度
+  .el-textarea__inner {
+    width: 300px;
+    height: 146px;
   }
 }
 </style>

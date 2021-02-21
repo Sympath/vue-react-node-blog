@@ -83,7 +83,7 @@ export function getPublishNotice(){
   })
 }
 
-
+// *********************************************文章类型****************************************************
 // 博文管理,新建(修改/删除) PC以及H5的文章类型
 const article_type ='/admin/article/type'
 export function postArticleType(data){
@@ -101,17 +101,37 @@ export function getArticleType(){
     method:'get'
   })
 }
+// *********************************************文章管理****************************************************
 
 // 博文管理,新建 PC以及H5的文章
-const article ='/admin/article/create'
+const c_article ='/admin/article/create'
 export function createArticle(data){
   return request({
-    url:article,
+    url:c_article,
     method:'post',
     data:data
   })
 }
-// 博文管理,修改 PC以及H5的文章
+// 博文管理,获取 PC以及H5的指定文章
+const article ='/admin/article/find'
+export function getArticle(query){
+  return request({
+    url:article,
+    method:'get',
+    params:query
+  })
+}
+
+// 博文管理,获取 PC以及H5的最近的一篇文章(最后一篇文章)
+const recent_article ='/admin/article/recent'
+export function getRecentArticle(){
+  return request({
+    url:recent_article,
+    method:'get'
+  })
+}
+
+// 博文管理,修改 PC以及H5的指定文章
 const u_article ='/admin/article/edit'
 export function editArticle(data){
   return request({
@@ -120,12 +140,13 @@ export function editArticle(data){
     data:data
   })
 }
-// 博文管理,获取 PC以及H5的文章列表
+// 博文管理,获取 PC以及H5的文章列表(包括条件查询)
 const articles ='/admin/article/list'
-export function getArticle(){
+export function getArticleList(query){
   return request({
     url:articles,
-    method:'get'
+    method:'get',
+    params:query
   })
 }
 
@@ -138,6 +159,63 @@ export function deleteArticle(query){
     params:query
   })
 }
+// *********************************************项目管理****************************************************
+// 项目管理,新建 PC以及H5的项目
+const c_project ='/admin/project/create'
+export function createProject(data){
+  return request({
+    url:c_project,
+    method:'post',
+    data:data
+  })
+}
+// 项目管理,获取 PC以及H5的指定的项目
+const project ='/admin/project/find'
+export function getProject(query){
+  return request({
+    url:project,
+    method:'get',
+    params:query
+  })
+}
+// 项目管理,获取 PC以及H5的最近的一个项目(最后一个项目)
+const recent_project ='/admin/project/recent'
+export function getRecentProject(){
+  return request({
+    url:recent_project,
+    method:'get'
+  })
+}
+// 项目管理,修改 PC以及H5的指定项目
+const u_project ='/admin/project/edit'
+export function editProject(data){
+  return request({
+    url:u_project,
+    method:'put',
+    data:data
+  })
+}
+// 项目管理,获取 PC以及H5的项目列表(包括条件查询)
+const projects ='/admin/project/list'
+export function getProjectList(query){
+  return request({
+    url:projects,
+    method:'get',
+    params:query
+  })
+}
+
+// 项目管理,删除PC以及H5的指定项目
+const d_project ='/admin/project/delete'
+export function deleteProject(query){
+  return request({
+    url:d_project,
+    method:'delete',
+    params:query
+  })
+}
+
+
 
 
 

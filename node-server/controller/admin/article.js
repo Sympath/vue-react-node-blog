@@ -33,6 +33,93 @@ class Article {
       });
     } catch (error) {}
   }
+
+  //获取文章列表(包括条件查询)
+  async adminArticleList(req, res) {
+    const { category, title, current, limit } = req.query;
+    if (category && title) {
+      var listLength = await ArticleInformation.find({
+        $and: [{ category: category }, { title: title }],
+      });
+      var list = await ArticleInformation.find({
+        $and: [{ category: category }, { title: title }],
+      })
+        .skip((current - 1) * limit)
+        .limit(parseInt(limit));
+    } else if (category || title) {
+      var listLength = await ArticleInformation.find({
+        $or: [{ category: category }, { title: title }],
+      });
+      var list = await ArticleInformation.find({
+        $or: [{ category: category }, { title: title }],
+      })
+        .skip((current - 1) * limit)
+        .limit(parseInt(limit));
+    } else {
+      var listLength = await ArticleInformation.find();
+      var list = await ArticleInformation.find()
+        .skip((current - 1) * limit)
+        .limit(parseInt(limit));
+    }
+    if (listLength.length) {
+      res.send({ list, total: listLength.length });
+    } else {
+      res.send({
+        status: 220,
+        type: "ERROR_LIST",
+        message: "不存在该文章信息",
+        list: [],
+        total: listLength.length,
+      });
+    }
+  }
+
+  // 获取指定文章
+  async adminGetArticle(req, res) {
+    try {
+      const id = req.query.id;
+      const article = await ArticleInformation.findById(id);
+      res.send({ article });
+    } catch (error) {}
+  }
+  // 获取最近的一篇文章
+  async adminGetRecentArticle(req, res) {
+    try {
+      const article = await ArticleInformation.find({})
+        .sort({ _id: -1 })
+        .limit(1);
+      res.send({ article });
+    } catch (error) {}
+  }
+  // 删除指定的文章
+  async adminDeleteArticle(req, res) {
+    try {
+      const id = req.query.id;
+      const ok = await ArticleInformation.findByIdAndDelete(id);
+      if (ok) {
+        res.send({
+          message: "文章删除成功",
+        });
+      } else {
+        res.send({
+          message: "文章删除失败",
+          status: 500,
+        });
+      }
+    } catch (error) {}
+  }
+  // 修改指定的文章
+
+  async adminEditArticle(req, res) {
+    try {
+      const id = req.body._id;
+      await ArticleInformation.findByIdAndUpdate(id, req.body);
+
+      res.send({
+        message: "文章修改成功",
+      });
+    } catch (error) {}
+  }
 }
 
 export default new Article();

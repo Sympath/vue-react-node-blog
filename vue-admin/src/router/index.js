@@ -92,13 +92,14 @@ const routes = [
       },
       // 修改文章
       {
-        path: "/article/edit",
+        path: "/article/edit/",
         name: "ArticleEdit",
         component: () => import("../views/article/articleEdit.vue"),
         meta: {
           Cname:'博文管理',
 					cname: '修改文章'
-				}
+				},
+        props: true
       },
       // 文章列表
       {
@@ -117,18 +118,30 @@ const routes = [
         path: "/project/create",
         name: "ProjectCreate",
         component: () => import("../views/project/projectCreate.vue"),
+        meta: {
+          Cname:'项目管理',
+					cname: '新建项目'
+				}
       },
       // 修改项目
       {
         path: "/project/edit",
         name: "ProjectEdit",
         component: () => import("../views/project/projectEdit.vue"),
+        meta: {
+          Cname:'项目管理',
+					cname: '修改项目'
+				}
       },
       // 项目列表
       {
         path: "/project/list",
         name: "ProjectList",
         component: () => import("../views/project/projectList.vue"),
+        meta: {
+          Cname:'项目管理',
+					cname: '项目列表'
+				}
       },
 
 
@@ -137,24 +150,40 @@ const routes = [
         path: "/user/list",
         name: "UserList",
         component: () => import("../views/user/userList.vue"),
+        meta: {
+          Cname:'用户管理',
+					cname: '用户列表'
+				}
       },
       // 用户留言
       {
         path: "/user/message",
         name: "UserMessage",
         component: () => import("../views/user/userMessage.vue"),
+        meta: {
+          Cname:'用户管理',
+					cname: '用户留言'
+				}
       },
       // 用户评论
       {
         path: "/user/comment",
         name: "UserComment",
         component: () => import("../views/user/userComment.vue"),
+        meta: {
+          Cname:'用户管理',
+					cname: '用户评论'
+				}
       },
       // 搜索历史
       {
         path: "/user/search",
         name: "SearchHistory",
         component: () => import("../views/user/searchHistory.vue"),
+        meta: {
+          Cname:'用户管理',
+					cname: '搜索历史'
+				}
       },
 
       // 友情链接
