@@ -1,7 +1,7 @@
 <template>
   <div class="friendLink">
     <!--序号,博客名,博客作者,博客logo,博客地址,博客简介-->
-
+    <!-- 上传失败 -->
     <div class="conditions">
       <div>
         <el-input
