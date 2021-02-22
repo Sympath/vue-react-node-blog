@@ -46,7 +46,21 @@
             },
             {
                 "id":3,
-                "title":"博文管理",
+                "title":"博客管理",
+                "icon":"el-icon-s-flag",
+                "children":[
+                 {
+                     "id":21,
+                     "title":"博客介绍",
+                     "spellname":"Blog",
+                     "routing":"/introduce/blog"
+ 
+                 }
+                ]
+            },
+            {
+                "id":3,
+                "title":"文章管理",
                 "icon":"el-icon-s-data",
                 "children":[
                     {

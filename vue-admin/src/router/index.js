@@ -58,6 +58,7 @@ const routes = [
 					cname: '个人经历'
 				}
       },
+       
        // 公告发布
        {
         path: "/publish/notice",
@@ -66,6 +67,17 @@ const routes = [
         meta: {
           Cname:'公告管理',
 					cname: '公告发布'
+				}
+        
+      },
+      // 博客介绍
+      {
+        path: "/introduce/blog",
+        name: "Blog",
+        component: () => import("../views/blog/aboutBlog.vue"),
+        meta: {
+          Cname:'博客管理',
+					cname: '博客介绍'
 				}
         
       },

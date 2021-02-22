@@ -1,7 +1,6 @@
 <template>
   <div class="project-list">
     <div class="conditions">
-      <div class="title-search">
         <el-input
           v-model="url"
           placeholder="请输入(项目源码)地址查询"
@@ -16,7 +15,7 @@
         <el-button type="primary" icon="el-icon-search" @click="_search"
           >查询</el-button
         >
-      </div>
+     
     </div>
 
     <el-table :data="List" border style="width: 100%" fit highlight-current-row>
@@ -141,11 +140,9 @@ export default {
 </script>
 <style lang="scss">
 .project-list {
-  .conditions {
-    display: flex;
-    width: 60%;
-    .title-search {
-      width: 98%;
+ 
+    .conditions {
+      width: 59%;
       display: flex;
       justify-content: space-between;
       .el-input {
@@ -155,7 +152,7 @@ export default {
         margin-left: 2px;
       }
     }
-  }
+  
   .el-table {
     margin-top: 20px;
   }
