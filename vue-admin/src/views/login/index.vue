@@ -12,13 +12,13 @@
         <h2 class="title">JS blog 后 台 管 理 系 统</h2>
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="account">
         <span class="svg-container">
           <i class="iconfont">&#xe611;</i>
         </span>
         <el-input
-          v-model="loginForm.username"
-          name="username"
+          v-model="loginForm.account"
+          name="account"
           type="text"
           tabindex="1"
           auto-complete="on"
@@ -66,11 +66,11 @@ export default {
     };
     return {
       loginForm: {
-        username: "",
+        account: "",
         password: "",
       },
       loginRule: {
-        username: [
+        account: [
           {
             required: true,
             message: "账号不允许为空",

@@ -216,6 +216,53 @@ export function deleteProject(query){
 }
 
 
+// 友链管理,获取全部友链
+const links ='/admin/link/list'
+export function getLinkList(query){
+  return request({
+    url:links,
+    method:'get',
+    params:query
+  })
+}
+// 友链管理,创建友链
+const c_link ='/admin/link/create'
+export function createLink(data){
+  return request({
+    url:c_link,
+    method:'post',
+    data:data
+  })
+}
+// 友链管理,删除友链
+const d_link ='/admin/link/delete'
+export function deleteLink(query){
+  return request({
+    url:d_link,
+    method:'delete',
+    params:query
+  })
+}
+// 友链管理,编辑友链
+const e_link ='/admin/link/edit'
+export function editLink(data){
+  return request({
+    url:e_link,
+    method:'put',
+    data:data
+  })
+}
+
+// 系统管理，密码重置
+const reset = '/admin/reset'; 
+export function adminReset(data) {
+  return request({
+    url: reset,
+    method: 'put',
+    data: data,
+  });
+}
+
 
 
 

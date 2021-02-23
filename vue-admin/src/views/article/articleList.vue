@@ -153,8 +153,9 @@ export default {
               message: res.data.message,
               type: "success",
             });
+             this.init()
           });
-          this.init()
+         
         })
         .catch(() => {
           this.$message({

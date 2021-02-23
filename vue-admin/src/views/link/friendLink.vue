@@ -1,16 +1,15 @@
 <template>
   <div class="friendLink">
     <!--序号,博客名,博客作者,博客logo,博客地址,博客简介-->
-    <!-- 上传失败 -->
     <div class="conditions">
       <div>
         <el-input
-          v-model="url"
-          placeholder="请输入博客名查询"
+          v-model="blog_name"
+          placeholder="请输入博客名称查询"
           clearable
         ></el-input>
         <el-input
-          v-model="title"
+          v-model="author"
           placeholder="请输入博客作者查询"
           clearable
         ></el-input>
@@ -18,28 +17,36 @@
           >查询</el-button
         >
       </div>
-       <el-button type="warning" icon="el-icon-circle-plus-outline" @click="_search" style="margin-top:8px"
-          >新增友链</el-button
-        >
+      <el-button
+        type="warning"
+        icon="el-icon-circle-plus-outline"
+        @click="_addShow"
+        style="margin-top:8px"
+        >新增友链</el-button
+      >
     </div>
 
     <el-table :data="List" border style="width: 100%" fit highlight-current-row>
       <el-table-column type="index" label="序号" width="60"> </el-table-column>
-      <el-table-column prop="blog_name" label="博客名称" width="160">
+      <el-table-column prop="blog_name" label="博客名称" width="180">
       </el-table-column>
       <el-table-column prop="author" label="博客作者" width="160">
       </el-table-column>
       <el-table-column prop="logo" label="博客logo" width="110">
       </el-table-column>
-      <el-table-column prop="link" label="博客地址" width="300">
+      <el-table-column prop="link" label="博客地址" width="350">
       </el-table-column>
-      <el-table-column prop="content" width="330" label="博客简介">
+      <el-table-column prop="content" label="博客简介" width="800">
       </el-table-column>
 
-      <el-table-column fixed="right" label="操作" width="210">
+      <el-table-column fixed="right" label="操作" width="150">
         <template slot-scope="scope">
-          <el-button type="success" size="small">查看</el-button>
-          <el-button type="primary" size="small">编辑</el-button>
+          <el-button
+            type="primary"
+            size="small"
+            @click="_editShow(scope.$index, scope.row)"
+            >编辑</el-button
+          >
           <el-button type="danger" size="small" @click="remove(scope.row)"
             >删除</el-button
           >
@@ -56,42 +63,63 @@
       @current-change="handleCurrentChange"
     >
     </el-pagination>
+    <el-dialog
+      disabled
+      class="prop"
+      :visible.sync="centerDialogVisible"
+      width="60%"
+      center
+      :close-on-click-modal="false"
+    >
+      <h2 v-show="isCreate">新建友链</h2>
+      <h2 v-show="isEdit">编辑友链</h2>
+      <link-view :form="form" />
+
+      <span slot="footer">
+        <el-button type="primary" v-show="isCreate" @click="_create"
+          >新 建</el-button
+        >
+        <el-button type="primary" v-show="isEdit" @click="_edit"
+          >修 改</el-button
+        >
+        <el-button @click="_cancel">关 闭</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { getArticleList, getArticleType, deleteArticle } from "@/api/api";
+import { getLinkList, deleteLink, createLink, editLink } from "@/api/api";
+import LinkView from "@/components/private/linkView";
 export default {
   data() {
     return {
-      article_types: null,
-      category: "",
+      author: "",
+      blog_name: "",
       List: null,
-      title: "",
-      // date:"",
       pageSize: 10,
       currentPage: 1,
       pageCount: 6,
       total: 20,
       listLoading: true,
+      form: null,
+      centerDialogVisible: false,
+      isCreate: false,
+      isEdit: false,
     };
   },
+  components: {
+    "link-view": LinkView,
+  },
   created() {
-    this.getType();
     this.init();
   },
   methods: {
-    getType() {
-      getArticleType().then((res) => {
-        this.article_types = res.data;
-      });
-    },
     init() {
       this.listLoading = true;
-      getArticleList({
-        category: this.category,
-        title: this.title,
-        // date:this.date,
+      getLinkList({
+        author: this.author,
+        blog_name: this.blog_name,
         current: this.currentPage,
         limit: this.pageSize,
       }).then((res) => {
@@ -100,40 +128,27 @@ export default {
         this.total = res.data.total;
       });
     },
-    // 改变分类触发的事件
-    _change() {
-      this.currentPage = 1;
-      this.init();
-    },
     _search() {
       this.currentPage = 1;
       this.init();
     },
-    handleCurrentChange(currentPage) {
-      this.currentPage = currentPage;
-      this.init();
-    },
-    // 点击查看/编辑按钮
-    handleClick(row) {
-      this.$router.push({ name: "ArticleEdit", params: { id: row._id } });
-    },
     // 点击删除按钮
     remove(row) {
-      this.$confirm(`确定要永久删除标题为 ${row.title} 的文章吗?`, "提示", {
+      this.$confirm(`确定要永久删除名称为 ${row.blog_name} 的博客吗?`, "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
       })
         .then(() => {
-          deleteArticle({
+          deleteLink({
             id: row._id,
           }).then((res) => {
             this.$message({
               message: res.data.message,
               type: "success",
             });
+            this.init();
           });
-          this.init();
         })
         .catch(() => {
           this.$message({
@@ -141,6 +156,48 @@ export default {
             message: "已取消删除",
           });
         });
+    },
+    handleCurrentChange(currentPage) {
+      this.currentPage = currentPage;
+      this.init();
+    },
+    //点击编辑 显示dialog
+    _editShow(index, row) {
+      this.form = row;
+      this.isEdit = true;
+      this.isCreate = false;
+      this.centerDialogVisible = true;
+    },
+    //点击编辑 显示dialog
+    _addShow() {
+      this.form = {};
+      this.isCreate = true;
+      this.isEdit = false;
+      this.centerDialogVisible = true;
+    },
+    // 点击取消 隐藏dialog
+    _cancel() {
+      this.centerDialogVisible = false;
+    },
+    _create() {
+      createLink(this.form).then((res) => {
+        this.$message({
+          type: "success",
+          message: res.data.message,
+        });
+        this.centerDialogVisible = false;
+        this.init();
+      });
+    },
+    _edit() {
+      editLink(this.form).then((res) => {
+        this.$message({
+          type: "success",
+          message: res.data.message,
+        });
+        this.centerDialogVisible = false;
+        this.init();
+      });
     },
   },
 };
@@ -165,6 +222,12 @@ export default {
   .el-pagination {
     margin-top: 20px;
     float: right;
+  }
+  .prop {
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 </style>
