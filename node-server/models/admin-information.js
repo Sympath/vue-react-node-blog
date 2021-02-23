@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const adminInformationSchema = new Schema({
-  username: String,
+  account: String,
   password: {
     type: String,
     select: false,

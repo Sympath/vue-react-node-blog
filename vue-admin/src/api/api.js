@@ -262,6 +262,16 @@ export function adminReset(data) {
     data: data,
   });
 }
+// 系统管理，注册管理员
+
+const register = '/admin/register'; 
+export function adminRegister(data) {
+  return request({
+    url: register,
+    method: 'post',
+    data: data,
+  });
+}
 
 
 

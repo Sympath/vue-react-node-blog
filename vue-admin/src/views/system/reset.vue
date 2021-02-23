@@ -22,7 +22,6 @@
         <el-input
           v-model="form.require_password"
           type="password"
-          @blur="requirePassword"
           show-password
         ></el-input>
       </el-form-item>
@@ -42,7 +41,7 @@ export default {
         account: "",
         password: "",
         new_password: "",
-        require_password:""
+        require_password: "",
       },
     };
   },
@@ -51,23 +50,20 @@ export default {
       this.form.account = "";
       this.form.password = "";
       this.form.new_password = "";
-      this.form.require_password=""
+      this.form.require_password = "";
     },
     _reset() {
-      adminReset(this.form).then((res) => {
-         this.$message({
-          message: res.data.message,
-          type: "success",
-        });
-        
-      });
-     
-    },
-    requirePassword() {
       if (this.form.new_password != this.form.require_password) {
         this.$message({
-          message: "请确保确任密码与新密码一致",
+          message: "请保证 确认密码与新密码 一致",
           type: "warning",
+        });
+      } else {
+        adminReset(this.form).then((res) => {
+          this.$message({
+            message: res.data.message,
+            type: "success",
+          });
         });
       }
     },
