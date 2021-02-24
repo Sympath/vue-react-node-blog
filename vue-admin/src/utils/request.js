@@ -6,6 +6,19 @@ const service = axios.create({
   timeout: 5000, // 请求超时时间
 });
 
+//请求拦截
+
+service.interceptors.request.use(
+  (config) => {
+    config.headers["Authorization"] = 'Bearer ' + localStorage.Authorization;
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+);
+
+// 响应拦截
 service.interceptors.response.use(
   (response) => {
     const res = response.data;
