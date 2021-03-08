@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import AdminInformation from "../models/admin-information";
-
+// 中间件 验证token
 class Check {
   async checkToken(req, res, next) {
     const token = String(req.headers.authorization || "")

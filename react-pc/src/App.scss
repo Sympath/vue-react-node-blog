@@ -1,0 +1,40 @@
+@import "~antd/dist/antd.css";
+
+.layout {
+  width: 100%;
+  height: 100vh;
+}
+.header {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // box-shadow: 2px 1px 3px #888888;
+  .nav {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    span{
+      margin-left: 3px;
+    }
+  }
+  .nav-btn {
+    width: 13%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.content {
+  background-color: #F9F9F9;
+  width: 55%;
+  height: 100%;
+}
+.sider {
+  background-color: #fff;
+ 
+}
+.footer {
+  background-color: #3ba0e9;
+}

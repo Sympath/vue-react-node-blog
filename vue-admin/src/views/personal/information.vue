@@ -24,7 +24,7 @@
               v-for="item in sex"
               :key="item.value"
               :label="item.label"
-              :value="item.value"
+              :value="item.label"
             >
             </el-option>
           </el-select>
@@ -42,10 +42,11 @@
         <el-form-item label="头像">
           <el-upload
             class="avatar-uploader"
-            :action="$service.defaults.baseURL + '/admin/upload'"
+            :action="$service.defaults.baseURL + '/upload'"
             :show-file-list="false"
-            :on-success="(res) => $set(form, 'image', res.url)"
+            :on-success="handleSuccess"
           >
+         
             <img v-if="form.image" :src="form.image" class="image" />
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
@@ -108,9 +109,9 @@
     </div>
     <div class="personal-information-bottom">
       <el-button class="save" type="primary" @click="postInformation"
-        >保存</el-button
+        >保 存</el-button
       >
-      <el-button class="cancel" type="primary">取消</el-button>
+     
     </div>
   </div>
 </template>
@@ -138,6 +139,8 @@ export default {
         hobby: "",
         motto: "",
       },
+      imgUrl:'',
+      domain:'http://cdn.codeting.top/',
       sex: [
         {
           value: 1,
@@ -172,6 +175,13 @@ export default {
         this.init();
       });
     },
+    handleSuccess(res){
+      
+       this.imgUrl = res.imgUrl
+       this.form.image= this.domain + res.imgUrl
+      
+       
+    }
   },
 };
 </script>

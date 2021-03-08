@@ -4,19 +4,8 @@ import express from "express";
 import Personal from "../../controller/admin/personal";
 
 const router = express.Router();
-const multer = require("multer");
 
 
-// 后台管理系统(图片上传方法)
-const upload = multer({ dest: __dirname + "/../../upload/admin" });
-router.post("/upload", upload.single("file"), async (req, res) => {
-  const file = req.file;
-  file.url = `http://localhost:3000/upload/admin/${file.filename}`;
-  res.send(file);
-});
-
-// //静态文件托管
-// router.get('/upload',express.static(__dirname+'/../../upload/admin'))  
 
 
 

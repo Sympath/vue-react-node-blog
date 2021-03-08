@@ -41,13 +41,26 @@ export default {
   },
   methods: {
     handleClose(tag) {
-      this.bloggerLabels.splice(this.bloggerLabels.indexOf(tag), 1);
-      postBloggerLabel(this.bloggerLabels).then((res) => {
-        this.$message({
-          message: res.data.message,
-          type: "success",
+      this.$confirm("确定删除该标签吗? 该操作不可逆!", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          this.bloggerLabels.splice(this.bloggerLabels.indexOf(tag), 1);
+          postBloggerLabel(this.bloggerLabels).then((res) => {
+            this.$message({
+              message: res.data.message,
+              type: "success",
+            });
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
         });
-      });
     },
 
     showInput() {
@@ -107,7 +120,6 @@ export default {
     margin-left: 10px;
   }
   .el-tag {
-    
     height: 35px;
     font-size: 20px;
   }

@@ -11,6 +11,16 @@ export function adminLogin(data) {
   });
 }
 
+// 图片上传七牛云
+const uploadImg = 'upload'
+export function uploadImage(data){
+  return request({
+    url: uploadImg,
+    method: 'post',
+    data: data,
+  });
+}
+
 // 个人信息,获取PC以及H5的博主个人信息
 const blogger_infor ='/admin/personal/information'
 export function getBloggerInformation(query){

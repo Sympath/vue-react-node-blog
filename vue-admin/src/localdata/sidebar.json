@@ -46,7 +46,7 @@
             },
             {
                 "id":3,
-                "title":"博客管理",
+                "title":"关于博客",
                 "icon":"el-icon-s-flag",
                 "children":[
                  {
