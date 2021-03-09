@@ -30,34 +30,7 @@
                     }
                 ]
             },
-            {
-                "id":2,
-                "title":"公告管理",
-                "icon":"el-icon-s-opportunity",
-                "children":[
-                 {
-                     "id":21,
-                     "title":"公告发布",
-                     "spellname":"Notice",
-                     "routing":"/publish/notice"
- 
-                 }
-                ]
-            },
-            {
-                "id":3,
-                "title":"关于博客",
-                "icon":"el-icon-s-flag",
-                "children":[
-                 {
-                     "id":21,
-                     "title":"博客介绍",
-                     "spellname":"Blog",
-                     "routing":"/introduce/blog"
- 
-                 }
-                ]
-            },
+           
             {
                 "id":3,
                 "title":"文章管理",
@@ -119,9 +92,51 @@
                ]
            },
             
-         
+           {
+            "id":2,
+            "title":"公告管理",
+            "icon":"el-icon-s-opportunity",
+            "children":[
+             {
+                 "id":21,
+                 "title":"公告发布",
+                 "spellname":"Notice",
+                 "routing":"/publish/notice"
+
+             }
+            ]
+        },
+        {
+            "id":3,
+            "title":"主站管理",
+            "icon":"el-icon-s-flag",
+            "children":[
+             {
+                 "id":21,
+                 "title":"博客介绍",
+                 "spellname":"Blog",
+                 "routing":"/introduce/blog"
+
+             }
+            ]
+        },
            
            
+           
+            {
+                "id":5,
+                "title":"友链管理",
+                "icon":"el-icon-link",
+                "children":[
+                    {
+                        "id":7,
+                        "title":"友情链接",
+                        "spellname":"FriendLink",
+                        "routing":"/firend/link"
+                    }
+                    
+                   ]
+            },
             {
                 "id":5,
                 "title":"用户管理",
@@ -154,22 +169,8 @@
                    ]
             },
             {
-                "id":5,
-                "title":"友链管理",
-                "icon":"el-icon-link",
-                "children":[
-                    {
-                        "id":7,
-                        "title":"友情链接",
-                        "spellname":"FriendLink",
-                        "routing":"/firend/link"
-                    }
-                    
-                   ]
-            },
-            {
                 "id":6,
-                "title":"系统管理",
+                "title":"后台管理",
                 "icon":"el-icon-camera-solid",
                 "children":[
                     

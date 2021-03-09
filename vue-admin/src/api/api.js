@@ -263,7 +263,7 @@ export function editLink(data){
   })
 }
 
-// 系统管理，密码重置
+// 后台管理，密码重置
 const reset = '/admin/reset'; 
 export function adminReset(data) {
   return request({
@@ -272,7 +272,7 @@ export function adminReset(data) {
     data: data,
   });
 }
-// 系统管理，注册管理员
+// 后台管理，注册管理员
 
 const register = '/admin/register'; 
 export function adminRegister(data) {

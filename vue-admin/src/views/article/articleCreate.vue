@@ -29,16 +29,20 @@
         >
         </el-switch>
       </el-form-item>
-      <el-form-item label="文章封面" class="cover">
-        <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          multiple
-          :limit="3"
-        >
-          <el-button size="small" type="primary">点击上传(不必须)</el-button>
-        </el-upload>
-      </el-form-item>
+     
+        <el-form-item label="文章封面(不必须)">
+          <el-upload
+            class="avatar-uploader"
+            :action="$service.defaults.baseURL + '/upload'"
+            :show-file-list="false"
+            :on-success="handleSuccess"
+          >
+         
+            <img v-if="form.image" :src="form.image" class="image" />
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
+     
     </div>
 
     <el-form-item label="文章内容">
@@ -69,11 +73,14 @@ export default {
         article: "",
         isPublic: true,
         title: "",
+        image: "",
         author: "付金廷",
         category: "",
         create_time: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
       },
       article_types: null,
+      imgUrl:'',
+      domain:'http://cdn.codeting.top/'
     };
   },
   components: {
@@ -113,6 +120,12 @@ export default {
         this.article_types = res.data;
       });
     },
+    handleSuccess(res){
+      
+       this.imgUrl = res.imgUrl
+       this.form.image= this.domain + res.imgUrl
+    
+    }
   },
   created() {
     this.getArticleCate();
@@ -120,6 +133,9 @@ export default {
 };
 </script>
 <style lang="scss">
+
+
+
 .create-article {
   .article-t-a {
     display: flex;
@@ -136,10 +152,40 @@ export default {
     }
   }
   .editor {
-    min-height: 515px;
+    min-height: 510px;
   }
   .btn {
     text-align: center;
   }
+
+  // 上传头像标准化
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 100px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+}
+.avatar {
+  width: 100px;
+  height: 35px;
+  display: block;
+}
+.image {
+  width: 100px;
+  height: 35px;
+  display: block;
+}
 }
 </style>

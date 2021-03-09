@@ -27,16 +27,19 @@
     </div>
 
     <el-table :data="List" border style="width: 100%" fit highlight-current-row>
-      <el-table-column type="index" label="序号" width="60"> </el-table-column>
-      <el-table-column prop="blog_name" label="博客名称" width="180">
+      <el-table-column type="index" label="序号" width="60" align="center"> </el-table-column>
+      <el-table-column prop="blog_name" label="博客名称" width="180" align="center">
       </el-table-column>
-      <el-table-column prop="author" label="博客作者" width="160">
+      <el-table-column prop="author" label="博客作者" width="160" align="center">
       </el-table-column>
-      <el-table-column prop="logo" label="博客logo" width="110">
+      <el-table-column prop="logo" label="博客logo" width="110" align="center">
+         <template slot-scope="scope">
+          <img :src="scope.row.image" class="cover"/>
+        </template>
       </el-table-column>
-      <el-table-column prop="link" label="博客地址" width="350">
+      <el-table-column prop="link" label="博客地址" width="350" align="center">
       </el-table-column>
-      <el-table-column prop="content" label="博客简介" width="800">
+      <el-table-column prop="content" label="博客简介" width="800" >
       </el-table-column>
 
       <el-table-column fixed="right" label="操作" width="150">
@@ -218,6 +221,9 @@ export default {
   }
   .el-table {
     margin-top: 20px;
+    .cover{
+      width: 30px;
+    }
   }
   .el-pagination {
     margin-top: 20px;

@@ -24,17 +24,20 @@
       </div>
 
       <div class="c-i">
+       
         <el-form-item label="项目封面">
           <el-upload
             class="avatar-uploader"
-            :action="$service.defaults.baseURL + '/admin/upload'"
+            :action="$service.defaults.baseURL + '/upload'"
             :show-file-list="false"
-            :on-success="(res) => $set(form, 'image', res.url)"
+            :on-success="handleSuccess"
           >
+         
             <img v-if="form.image" :src="form.image" class="image" />
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
+
         <el-form-item
           label="是否公开"
           style="margin-left:298px"
@@ -70,14 +73,16 @@ export default {
     return {
       form: {
         title: "",
-        cover: "",
         url: "",
+        image:"",
         status: "维护中",
         introduce: "",
         author: "付金廷",
         isPublic: true,
         create_time: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
       },
+      imgUrl:'',
+      domain:'http://cdn.codeting.top/'
     };
   },
   methods: {
@@ -109,6 +114,10 @@ export default {
         });
       });
     },
+    handleSuccess(res){
+       this.imgUrl = res.imgUrl
+       this.form.image= this.domain + res.imgUrl
+    }
   },
 };
 </script>
@@ -174,19 +183,19 @@ export default {
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 150px;
-    height: 150px;
-    line-height: 150px;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
     text-align: center;
   }
   .avatar {
-    width: 150px;
-    height: 150px;
+    width: 70px;
+    height: 70px;
     display: block;
   }
   .image {
-    width: 150px;
-    height: 150px;
+    width: 70px;
+    height: 70px;
     display: block;
   }
 }

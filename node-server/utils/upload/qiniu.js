@@ -19,7 +19,7 @@ router.post("", uploads.single("file"), function (req, res, next) {
     .catch((err) => {
       res.send({
         message: "图片上传失败",
-        status: 500,
+        status: 510,
       });
     });
 });

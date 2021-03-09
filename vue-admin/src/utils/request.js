@@ -30,7 +30,9 @@ service.interceptors.response.use(
       Message.error(res.message);
     } else if (res.status === 212) {
       Message.error(res.message);
-    } else {
+    }  else if (res.status === 510) {
+      Message.error(res.message);
+    }else {
       return response;
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container style="height:100vh">
     <el-aside width="auto">
       <el-menu
         router
@@ -116,6 +116,7 @@ export default {
   min-height: 400px;
   width: 200px;
 }
+
 
 .el-submenu {
   padding: 0 5px;

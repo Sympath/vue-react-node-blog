@@ -4,6 +4,7 @@
       <el-form-item>
         <!-- 个人经历暂用 富文本编辑器 -->
         <vue-editor
+          class="vue-editor"
           v-model="expre"
           useCustomImageHandler
           @image-added="handleImageAdded"
@@ -50,7 +51,6 @@ export default {
     handleImageAdded(file, Editor, cursorLocation, resetUploader){
        const formData = new FormData();
        formData.append("file", file);
-       console.log('1111111');
        uploadImage(formData).then(res=>{
           console.log(res);
           Editor.insertEmbed(cursorLocation, "image", this.domain+res.data.imgUrl);
@@ -63,12 +63,14 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.ql-editor {
-  min-height: 480px !important;
+<style lang="scss" scope>
+
+.vue-editor {
+  height: 605px;
 }
 
 .btn {
+  margin-top: 80px;
   text-align: center;
 }
 </style>

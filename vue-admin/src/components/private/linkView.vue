@@ -15,17 +15,23 @@
           style="width: 200px"
         ></el-input>
       </el-form-item>
+
+      <!-- 项目logo -->
       <el-form-item label="项目logo">
-        <el-upload
-          class="avatar-uploader"
-          :action="$service.defaults.baseURL + '/admin/upload'"
-          :show-file-list="false"
-          :on-success="(res) => $set(form, 'image', res.url)"
-        >
-          <img v-if="form.image" :src="form.image" class="image" />
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-        </el-upload>
-      </el-form-item>
+          <el-upload
+            class="avatar-uploader"
+            :action="$service.defaults.baseURL + '/upload'"
+            :show-file-list="false"
+            :on-success="handleSuccess"
+          >
+         
+            <img v-if="form.image" :src="form.image" class="image" />
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
+
+
+
       <el-form-item label="博客地址" required>
         <el-input clearable v-model="form.link" style="width: 300px"></el-input>
       </el-form-item>
@@ -43,7 +49,18 @@
 export default {
   props: ["form"],
   data() {
-    return {};
+    return {
+      imgUrl:'',
+      domain:'http://cdn.codeting.top/',
+    };
+  },
+  methods: {
+     handleSuccess(res){
+       this.imgUrl = res.imgUrl
+       let image= this.domain + res.imgUrl
+       this.$set(this.form,'image',image)
+       
+    }
   },
 };
 </script>

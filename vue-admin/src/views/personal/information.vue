@@ -176,16 +176,13 @@ export default {
       });
     },
     handleSuccess(res){
-      
        this.imgUrl = res.imgUrl
        this.form.image= this.domain + res.imgUrl
-      
-       
     }
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scope>
 // 上传头像标准化
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;

@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const linkInformationSchema = new Schema({
   blog_name:String,
   author:String,
-  logo:String,
+  image:String,
   link:String,
   content:String,
   create_time:String
