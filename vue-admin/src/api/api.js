@@ -12,10 +12,10 @@ export function adminLogin(data) {
 }
 
 // 图片上传七牛云
-const uploadImg = 'upload'
+const upload_img = 'upload'
 export function uploadImage(data){
   return request({
-    url: uploadImg,
+    url: upload_img,
     method: 'post',
     data: data,
   });

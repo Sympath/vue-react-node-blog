@@ -1,28 +1,35 @@
 "use strict";
-
-
-import login from "./admin/login";
-import personal from "./admin/personal";
-import publish from "./admin/publish";
-import article from "./admin/article";
-import project from "./admin/project";
-import link from "./admin/link";
-import Check from "../middlewares/check";
-
 // 七牛云
 var uploadRouter = require('../utils/upload/qiniu');
+
+// 后台管理系统路由引入
+import adminLogin from "./admin/login";
+import adminPersonal from "./admin/personal";
+import adminPublish from "./admin/publish";
+import adminArticle from "./admin/article";
+import adminProject from "./admin/project";
+import adminLink from "./admin/link";
+import Check from "../middlewares/check";
+
+// PC和H5前端引入
+import userLogin from "./user/login";
+
+
 
 export default (app) => {
     // 七牛云存储
     app.use('/upload', uploadRouter);
 
     //后台管理系统
-    app.use("/admin", login);
-    app.use("/admin",Check.checkToken, personal);  // token验证
-    app.use("/admin", publish);
-    app.use("/admin",article);
-    app.use("/admin", project);
-    app.use("/admin", link);
+    app.use("/admin", adminLogin);
+    app.use("/admin",Check.checkToken, adminPersonal);  // token验证
+    app.use("/admin", adminPublish);
+    app.use("/admin",adminArticle);
+    app.use("/admin", adminProject);
+    app.use("/admin", adminLink);
+
+    // pc/h5 用户前端
+    app.use("/user", userLogin);
     
   };
   

@@ -1,5 +1,6 @@
 import React from "react";
 import '../../assets/style/recommend.scss'
+import {userLogin} from '../../api/api'
 export default class Recommend extends React.Component{
     render() {
         return (
@@ -8,4 +9,12 @@ export default class Recommend extends React.Component{
           </div>
         );
       }
+      componentWillMount(){
+        this.openNotification()
+      }
+      openNotification = () => {
+        userLogin().then(res=>{
+          console.log(res);
+        })
+      };
 }
