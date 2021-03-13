@@ -1,10 +1,11 @@
 'use strict';
 
 import express from 'express'
-import UserLogin from '../../user/admin/login'
+import UserLoginReset from '../../controller/user/login-reset'
 const router = express.Router()
 
-// 后台管理系统登录
-router.post('/login', UserLogin.adminLogin);
+// 前端用户登录
+router.post('/login', UserLoginReset.userLogin);
+router.post('/register', UserLoginReset.userRegister);
 
 export default router

@@ -1,75 +1,47 @@
 import React from "react";
 import RootRouter from "../../router/index";
-import { NavLink, HashRouter as Router } from "react-router-dom";
-import { Layout, Button } from "antd";
-import {
-  LoginOutlined,
-  FireOutlined,
-  ReadOutlined,
-  ProjectOutlined,
-  MessageOutlined,
-  ChromeOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { Layout, Button, notification } from "antd";
+
 import Tags from "../../compontents/tags";
 import Information from "../../compontents/information";
-import { notification } from 'antd';
+import Nav from "../../compontents/nav";
+
+import { getBloggerInfor , getTypeArticleProjectNums} from "../../api/api";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 export default class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bloggerInfor: {
+        name: "fujinting",
+        image:
+          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn21%2F446%2Fw640h606%2F20180423%2Fe1de-fzqvvsa0695367.jpg&refer=http%3A%2F%2Fn.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1618211280&t=44c267ade434e93aa5e7ffcaaa8fdf69",
+        motto: "typescript大佬",
+        label:['学习','吃饭','睡觉','蹲坑'],
+      },
+      typartpronums:{
+        article_nums:0,
+        project_nums:0,
+        type_nums:0
+      }
+    };
+  }
   render() {
     return (
       <>
         <Layout className="layout">
           <Header className="header">
-            <Router>
-              <div className="nav">
-                <NavLink to="/recommend">
-                  <FireOutlined />
-                  <span>博主推荐</span>
-                </NavLink>
-                <NavLink to="/about">
-                  <ReadOutlined />
-                  <span> 技术文章</span>
-                </NavLink>
-                <NavLink to="/login">
-                  <ProjectOutlined />
-                  <span> 项目源码</span>
-                </NavLink>
-                <NavLink to="/login">
-                  <MessageOutlined />
-                  <span>给我留言</span>
-                </NavLink>
-                <NavLink to="/about">
-                  <ChromeOutlined />
-                  <span>关于网站</span>
-                </NavLink>
-                <NavLink to="/about">
-                  <UserOutlined />
-                  <span>关于博主</span>
-                </NavLink>
-              </div>
-              <div className="nav-btn">
-                <Button type="primary" onClick={openNotification}>
-                  <LoginOutlined />
-                  
-                  登录
-                </Button>
-                <Button type="danger">
-                  <LoginOutlined />
-                  注册
-                </Button>
-              </div>
-            </Router>
+            <Nav />
           </Header>
           <Layout>
             <Content className="content">
               <RootRouter />
             </Content>
             <Sider className="sider" width="20%">
-              <Information />
-              <Tags />
+              <Information bloggerInfor={this.state.bloggerInfor} typartpronums={this.state.typartpronums} />
+              <Tags bloggerInfor={this.state.bloggerInfor}/>
             </Sider>
           </Layout>
           <Footer className="footer"></Footer>
@@ -78,18 +50,37 @@ export default class Home extends React.Component {
     );
   }
 
-  componentWillMount(){
-    openNotification()
+  // 获取博主个人信息
+  getBloggerSideInfor() {
+    getBloggerInfor().then((res) => {
+      this.setState({
+        bloggerInfor: res.data[0],
+      });
+    });
   }
-  
-  
+  // 获取分类数量，文章数量，项目数量
+  getSideTypArtProNums(){
+    getTypeArticleProjectNums().then(res=>{
+      this.setState({
+        typartpronums: res.data
+      });
+    })
+
+  }
+  componentWillMount() {
+    // 弹出公告
+    openNotification();
+    // 获取侧边栏博主信息
+    this.getBloggerSideInfor();
+    this.getSideTypArtProNums();
+  }
 }
 
 // 公告内容
 
 const close = () => {
   console.log(
-    'Notification was closed. Either the close button was clicked or duration time elapsed.',
+    "Notification was closed. Either the close button was clicked or duration time elapsed."
   );
 };
 
@@ -97,15 +88,16 @@ const openNotification = () => {
   const key = `open${Date.now()}`;
   const btn = (
     <Button type="primary" size="small" onClick={() => notification.close(key)}>
-      Confirm
+      知道了
     </Button>
   );
   notification.open({
-    message: '公告',
+    message: "公告",
     description:
-      'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
+      '你好，你个狗杂种',
     btn,
     key,
     onClose: close,
+    duration:3
   });
 };

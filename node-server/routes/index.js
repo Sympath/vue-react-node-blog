@@ -13,6 +13,8 @@ import Check from "../middlewares/check";
 
 // PC和H5前端引入
 import userLogin from "./user/login";
+import userBloggerInfor from "./user/blogger";
+import userDictionary from "./user/dictionary";
 
 
 
@@ -30,6 +32,8 @@ export default (app) => {
 
     // pc/h5 用户前端
     app.use("/user", userLogin);
+    app.use("/user", userBloggerInfor);
+    app.use("/user", userDictionary);
     
   };
   

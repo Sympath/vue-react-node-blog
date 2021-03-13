@@ -1,0 +1,26 @@
+.nav {
+  width: 100%;
+  height: 99%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .nav-left {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    span {
+      margin-left: 5px;
+      font-size: 16px;
+    }
+  }
+  .nav-right {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+    
+    .register{
+      background-color: #67C23A;
+    }
+   
+  }
+}

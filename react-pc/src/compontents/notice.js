@@ -1,5 +1,5 @@
 
-import '../assets/style/home.scss'
+import '../assets/style/compontents/notice.scss'
 import { notification } from 'antd';
 
 

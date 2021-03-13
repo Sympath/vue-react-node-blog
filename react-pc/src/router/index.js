@@ -5,7 +5,11 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 //** 引入组件
 import Recommend from "../views/recommend";
-import About from "../views/about";
+import Article from "../views/article";
+import Project from "../views/project";
+import Message from "../views/message";
+import Website from "../views/website";
+import Blogger from "../views/blogger";
 
 //固定格式
 export default function RootRouter() {
@@ -13,7 +17,11 @@ export default function RootRouter() {
     <Router>
       <Switch>
         <Route path="/recommend" component={Recommend}></Route>
-        <Route path="/about" component={About}></Route>
+        <Route path="/article" component={Article}></Route>
+        <Route path="/project" component={Project}></Route>
+        <Route path="/message" component={Message}></Route>
+        <Route path="/website" component={Website}></Route>
+        <Route path="/blogger" component={Blogger}></Route>
       </Switch>
     </Router>
   );

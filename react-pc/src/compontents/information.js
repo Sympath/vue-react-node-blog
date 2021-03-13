@@ -1,31 +1,41 @@
+import React from "react";
 import { Divider } from "antd";
-import "../assets/style/home.scss";
-import avatar from "../assets/images/avatar.jpg";
+import "../assets/style/compontents/information.scss";
 
-export default function Information() {
-  return (
-    <div className="information">
-      <Divider>简介</Divider>
-      <img src={avatar} alt="头像" />
-      <h1>fujinting</h1>
-      <div className="infor-content">一只js菜鸡</div>
-      <div className="product-nums">
-        <span>
-          <div>20</div>
-          <div>标签</div>
-        </span>
-        <span>
-          <div>100</div>
-          <div>文章</div>
-        </span>
-        <span className="infor-project">
-          <div>100</div>
-          <div>项目</div>
-        </span>
-      </div>
-      <div className="infor-other">
+export default class Information extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+    };
+    
 
+  }
+  render() {
+    return (
+      <div className="information">
+        <Divider style={{ width: "80%" ,marginTop:"20px"}}>博主 简介</Divider>
+        <img src={this.props.bloggerInfor.image} alt="头像" />
+        <h2>{this.props.bloggerInfor.name}</h2>
+        <div className="infor-content">{this.props.bloggerInfor.motto}</div>
+        <div className="product-nums">
+          <span>
+            <div>{this.props.typartpronums.type_nums}</div>
+            <div>分类</div>
+          </span>
+          <span>
+            <div>{this.props.typartpronums.article_nums}</div>
+            <div>文章</div>
+          </span>
+          <span className="infor-project">
+            <div>{this.props.typartpronums.project_nums}</div>
+            <div>项目</div>
+          </span>
+        </div>
+        <div className="infor-other"></div>
       </div>
-    </div>
-  );
+    );
+  }
+
+ 
 }

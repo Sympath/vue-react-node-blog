@@ -1,24 +1,22 @@
-import {Divider , Tag } from "antd";
-import '../assets/style/home.scss'
+import { useState } from 'react'
+import { Divider,Tag } from "antd";
+import "../assets/style/compontents/tags.scss";
 
-export default function Tags() {
+export default function Tags(props) {
+  const [ colors ] = useState(['#f50','#2db7f5','#87d068','#108ee9','#55acee','#3b5999','red','green','blue','purple'])
   return (
     <div className="tags">
-        <Divider>标签云</Divider>
-      <Tag className="tag" color="#f50">vue</Tag>
-      <Tag  className="tag" color="#2db7f5">react</Tag>
-      <Tag  className="tag" color="#87d068">webpack</Tag>
-      <Tag   className="tag" color="#108ee9">node</Tag>
-
-      <Tag className="tag" color="#f50">算法</Tag>
-      <Tag  className="tag" color="#2db7f5">数据结构</Tag>
-      <Tag  className="tag" color="#87d068">mysql</Tag>
-      <Tag   className="tag" color="#108ee9">计算机网络</Tag>
-
-      <Tag  className="tag" color="#2db7f5">mongodb</Tag>
-      <Tag  className="tag" color="#87d068">express</Tag>
-      <Tag   className="tag" color="#108ee9">elementUI</Tag>
+      <Divider>标签云</Divider>
+      {props.bloggerInfor.label.map((item) => {
+        
+        return (
+          <Tag className="tag" color={colors[Math.floor(Math.random()*10)]} key={item}>
+            {item}
+          </Tag>
+        );
+      })}
       
+     
     </div>
   );
 }
