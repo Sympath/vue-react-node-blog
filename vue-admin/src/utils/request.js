@@ -28,10 +28,13 @@ service.interceptors.response.use(
       return Promise.reject("error");
     } else if (res.status === 211) {
       Message.error(res.message);
+      return Promise.reject("error");
     } else if (res.status === 212) {
       Message.error(res.message);
+      return Promise.reject("error");
     }  else if (res.status === 510) {
       Message.error(res.message);
+      return Promise.reject("error");
     }else {
       return response;
     }

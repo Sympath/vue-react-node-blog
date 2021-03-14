@@ -15,6 +15,7 @@ import Check from "../middlewares/check";
 import userLogin from "./user/login";
 import userBloggerInfor from "./user/blogger";
 import userDictionary from "./user/dictionary";
+import userArticle from "./user/article";
 
 
 
@@ -34,6 +35,7 @@ export default (app) => {
     app.use("/user", userLogin);
     app.use("/user", userBloggerInfor);
     app.use("/user", userDictionary);
+    app.use('/user', userArticle)
     
   };
   

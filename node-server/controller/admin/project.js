@@ -22,7 +22,7 @@ class Project {
       });
       var list = await ProjectInformation.find({
         $and: [{ url: url }, { title: title }],
-      })
+      }).sort({_id: -1})
         .skip((current - 1) * limit)
         .limit(parseInt(limit));
     } else if (url || title) {
@@ -31,12 +31,12 @@ class Project {
       });
       var list = await ProjectInformation.find({
         $or: [{ url: url }, { title: title }],
-      })
+      }).sort({_id: -1})
         .skip((current - 1) * limit)
         .limit(parseInt(limit));
     } else {
       var listLength = await ProjectInformation.find();
-      var list = await ProjectInformation.find()
+      var list = await ProjectInformation.find().sort({_id: -1})
         .skip((current - 1) * limit)
         .limit(parseInt(limit));
     }

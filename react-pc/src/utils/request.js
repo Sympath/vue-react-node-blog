@@ -16,10 +16,16 @@ service.interceptors.response.use(
       return Promise.reject("error");
     } else if (res.status === 211) {
       message.error(res.message);
+      return Promise.reject("error");
     } else if (res.status === 212) {
       message.error(res.message);
-    }  else if (res.status === 510) {
+      return Promise.reject("error");
+    } else if (res.status === 213) {
       message.error(res.message);
+      return Promise.reject("error");
+    } else if (res.status === 510) {
+      message.error(res.message);
+      return Promise.reject("error");
     }else {
       return response;
     }

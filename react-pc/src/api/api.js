@@ -10,6 +10,15 @@ export function userLogin(data) {
   });
 }
 
+const register = '/user/register'; 
+export function userRegister(data) {
+  return request({
+    url: register,
+    method: 'post',
+    data: data,
+  });
+}
+
 // 获取侧边栏博主的信息
 const blogger_infor = '/user/blogger/information'; 
 export function getBloggerInfor(query) {
@@ -26,4 +35,14 @@ export function getTypeArticleProjectNums() {
     url: typ_atr_pro_nums,
     method: 'get'
   });
+}
+
+// 获取技术文章页面技术文章列表
+const articles ='/user/article/list'
+export function getArticleList(query){
+  return request({
+    url:articles,
+    method:'get',
+    params:query
+  })
 }

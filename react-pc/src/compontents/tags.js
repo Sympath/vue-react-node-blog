@@ -7,10 +7,10 @@ export default function Tags(props) {
   return (
     <div className="tags">
       <Divider>标签云</Divider>
-      {props.bloggerInfor.label.map((item) => {
+      {props.bloggerInfor.label.map((item,index) => {
         
         return (
-          <Tag className="tag" color={colors[Math.floor(Math.random()*10)]} key={item}>
+          <Tag className="tag" color={colors[Math.floor(Math.random()*10)]} key={index}>
             {item}
           </Tag>
         );

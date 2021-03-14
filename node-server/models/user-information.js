@@ -13,6 +13,7 @@ const userInformationSchema = new Schema({
       return require("bcryptjs").hashSync(val, 10);
     },
   },
+  nackname:String
 });
 
 userInformationSchema.index({ id: 1 });

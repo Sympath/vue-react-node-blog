@@ -11,6 +11,8 @@ import Message from "../views/message";
 import Website from "../views/website";
 import Blogger from "../views/blogger";
 
+import ArticleDetail from '../views/article/detail'
+
 //固定格式
 export default function RootRouter() {
   return (
@@ -22,6 +24,8 @@ export default function RootRouter() {
         <Route path="/message" component={Message}></Route>
         <Route path="/website" component={Website}></Route>
         <Route path="/blogger" component={Blogger}></Route>
+
+        <Route path="/detail/article" component={ArticleDetail}></Route>
       </Switch>
     </Router>
   );

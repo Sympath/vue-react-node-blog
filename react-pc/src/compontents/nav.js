@@ -11,20 +11,22 @@ import {
   UserOutlined,
   LogoutOutlined,
   KeyOutlined,
+  SmileOutlined
 } from "@ant-design/icons";
 import "../assets/style/compontents/nav.scss";
-import {userLogin } from '../api/api'
+import {userLogin ,userRegister} from '../api/api'
 
 export default class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoginModalVisible: false,
+      isRegisterModalVisible: false,
       account:'',
-      password:''
+      password:'',
+      nackname:''
     };
     this._login = this._login.bind(this);
-    this.handleOk = this.handleOk.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
   }
@@ -63,16 +65,18 @@ export default class Nav extends React.Component {
             <Button type="primary" onClick={this.loginModelShow}>
               <LoginOutlined />登 录
             </Button>
-            <Button className="register" type="danger">
+            <Button className="register"  onClick={this.registerModelShow}>
               <LogoutOutlined />注 册
             </Button>
           </div>
+
+
+          {/* 登录的model */}
           <Modal
             className="login-model"
-            title="登 录"
+            title="登录账号"
             visible={this.state.isLoginModalVisible}
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
+            onCancel={this.handleCancelLogin}
             footer={null}
           >
             <div>
@@ -103,10 +107,66 @@ export default class Nav extends React.Component {
                   type="primary"
                   onClick={this._login}
                 >
-                  登录
+                  登 录
                 </Button>
                 <Button style={{ width: "100%" }} onClick={this.handleOAuth}>
                   github 授权登录
+                </Button>
+              </div>
+            </div>
+          </Modal>
+
+
+          {/* 注册的Model */}
+          <Modal
+            className="register-model"
+            title="注册账号"
+            visible={this.state.isRegisterModalVisible}
+            onCancel={this.handleCancelRegister}
+            footer={null}
+          >
+            <div>
+           
+              <Input
+                className="account"
+                size="large"
+                style={{ marginBottom: 20 }}
+                placeholder="请输入账号"
+                name="account"
+                value={this.state.account}
+                prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                onChange={this.handleChange}
+              />
+              <Input
+                className="password"
+                size="large"
+                style={{ marginBottom: 20 }}
+                type="password"
+                name="password"
+                placeholder="请输入密码"
+                value={this.state.password}
+                prefix={<KeyOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                onChange={this.handleChange}
+              />
+                <Input
+                className="nackname"
+                size="large"
+                style={{ marginBottom: 20 }}
+                name="nackname"
+                placeholder="请输入昵称 (可不填，系统随机生成)"
+                value={this.state.nackname}
+                prefix={<SmileOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                onChange={this.handleChange}
+              />
+               <div className="login-submit">
+                <Button
+                  style={{ width: "100%", marginBottom: "20px" ,backgroundColor:"#67C23A",color:"#fff"}}
+                  onClick={this._register}
+                >
+                  注 册
+                </Button>
+                <Button type="danger" style={{ width: "100%" }}>
+                  取 消
                 </Button>
               </div>
             </div>
@@ -116,21 +176,32 @@ export default class Nav extends React.Component {
     );
   }
 
+  // 登录框显示
   loginModelShow = () => {
+    message.info('推荐您使用github授权登录！');
     this.setState({
       isLoginModalVisible: true,
     });
   };
-  handleOk = () => {
+  // 注册框显示
+  registerModelShow =()=>{
+    this.setState({
+      isRegisterModalVisible: true,
+    });
+  }
+  // 登录框消失
+  handleCancelLogin = () => {
     this.setState({
       isLoginModalVisible: false,
     });
   };
-  handleCancel = () => {
+  // 注册框消失
+  handleCancelRegister = () => {
     this.setState({
-      isLoginModalVisible: false,
+      isRegisterModalVisible: false,
     });
   };
+
 
   // 实现类似vue的双向绑定
   handleChange(event) {
@@ -151,9 +222,28 @@ export default class Nav extends React.Component {
     }).then(res=>{
       this.setState({
         isLoginModalVisible: false,
+        account:'',
+        password:'',
+        nackname:''
       });
       message.success(res.data.message);
-     
+      
+    })
+  }
+  // 注册
+  _register=()=>{
+    userRegister({
+      account:this.state.account,
+      password:this.state.password,
+      nackname:this.state.nackname
+    }).then(res=>{
+      this.setState({
+        isRegisterModalVisible: false,
+        account:'',
+        password:'',
+        nackname:''
+      });
+      message.success(res.data.message);
     })
   }
 }
