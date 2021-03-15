@@ -24,7 +24,9 @@ export default class About extends React.Component {
               showSearch
               style={{
                 width:200,
-                marginTop: "10px"
+                height:30,
+                marginTop: "10px",
+                marginRight:'10px'
               }}
               className="search-select"
               placeholder="选择文章分类进行查询"
@@ -88,7 +90,7 @@ export default class About extends React.Component {
     console.log(id);
     // 跳转到详情页
     this.props.history.push("/detail/article", {
-      article_id: id,
+      id: id,
     });
   }
 }

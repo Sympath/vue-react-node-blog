@@ -1,10 +1,12 @@
 .article {
   padding: 0 20px;
   box-sizing: border-box;
+  overflow-y: scroll;
+  height: 100vh;
   .article-search {
     display: flex;
     justify-content: flex-end;
-    width: 77.5%;
+    width: 77.3%;
     background-color: #F9F9F9;
     position: fixed;
     height: 50px;
@@ -24,8 +26,8 @@
         display: flex;
         justify-content: space-between;
         .item-left {
-      
-          width: 78%;
+         
+          width: 70%;
           height: 100%;
           padding: 5px 5px;
           box-sizing: border-box;
@@ -34,6 +36,7 @@
             font-weight: 700;
           }
           p {
+           
             height: 85px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -44,12 +47,14 @@
               display: flex;
             
               .read-commit-star{
+              
                   width: 60%;
                  span{
                      margin-right: 20px;
                  }
               }
               .time{
+              
                   width: 40%;
                   display: flex;
                   justify-content: flex-end;
