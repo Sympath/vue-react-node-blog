@@ -23,11 +23,10 @@ export default class About extends React.Component {
             <Select
               showSearch
               style={{
-                width: 200,
-                marginTop: "10px",
-                marginBottom: "10px",
-                marginLeft: "10px",
+                width:200,
+                marginTop: "10px"
               }}
+              className="search-select"
               placeholder="选择文章分类进行查询"
               optionFilterProp="children"
               filterOption={(input, option) =>

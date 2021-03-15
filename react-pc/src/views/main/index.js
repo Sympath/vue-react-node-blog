@@ -1,14 +1,12 @@
 import React from "react";
 import RootRouter from "../../router/index";
-import { Layout, Button, notification } from "antd";
+import {Button, notification } from "antd";
 
 import Tags from "../../compontents/tags";
 import Information from "../../compontents/information";
 import Nav from "../../compontents/nav";
 
 import { getBloggerInfor , getTypeArticleProjectNums} from "../../api/api";
-
-const { Header, Footer, Sider, Content } = Layout;
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -31,21 +29,21 @@ export default class Home extends React.Component {
   render() {
     return (
       <>
-        <Layout className="layout">
-          <Header className="header">
-            <Nav />
-          </Header>
-          <Layout>
-            <Content className="content">
-              <RootRouter />
-            </Content>
-            <Sider className="sider" width="20%">
-              <Information bloggerInfor={this.state.bloggerInfor} typartpronums={this.state.typartpronums} />
+        <div className="main">
+          <div className="header">
+              <Nav />
+          </div>
+          <div className="bodyer">
+            <div className="content">
+            <RootRouter />
+            </div>
+            <div className="sider">
+            <Information bloggerInfor={this.state.bloggerInfor} typartpronums={this.state.typartpronums} />
               <Tags bloggerInfor={this.state.bloggerInfor}/>
-            </Sider>
-          </Layout>
-          <Footer className="footer"></Footer>
-        </Layout>
+            </div>
+          </div>
+          <div className="footer"></div>
+        </div>
       </>
     );
   }
@@ -94,7 +92,7 @@ const openNotification = () => {
   notification.open({
     message: "公告",
     description:
-      '你好，你个狗杂种',
+      '你好',
     btn,
     key,
     onClose: close,

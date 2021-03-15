@@ -182,12 +182,14 @@ export default class Nav extends React.Component {
     this.setState({
       isLoginModalVisible: true,
     });
+    
   };
   // 注册框显示
   registerModelShow =()=>{
     this.setState({
       isRegisterModalVisible: true,
     });
+    
   }
   // 登录框消失
   handleCancelLogin = () => {
