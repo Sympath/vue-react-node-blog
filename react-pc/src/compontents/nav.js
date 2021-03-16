@@ -36,27 +36,27 @@ export default class Nav extends React.Component {
       <div className="nav">
         <Router>
           <div className="nav-left">
-            <NavLink to="/recommend">
+            <NavLink to="/recommend" style={{fontWeight:700}}>
               <FireOutlined />
               <span>博主推荐</span>
             </NavLink>
-            <NavLink to="/article">
+            <NavLink to="/article"  style={{fontWeight:700}}>
               <ReadOutlined />
               <span> 技术文章</span>
             </NavLink>
-            <NavLink to="/project">
+            <NavLink to="/project"  style={{fontWeight:700}}>
               <ProjectOutlined />
               <span> 项目源码</span>
             </NavLink>
-            <NavLink to="/message">
+            <NavLink to="/message"  style={{fontWeight:700}}>
               <MessageOutlined />
               <span>给我留言</span>
             </NavLink>
-            <NavLink to="/website">
+            <NavLink to="/website"  style={{fontWeight:700}}>
               <ChromeOutlined />
               <span>关于网站</span>
             </NavLink>
-            <NavLink to="/blogger">
+            <NavLink to="/blogger"  style={{fontWeight:700}}>
               <UserOutlined />
               <span>关于博主</span>
             </NavLink>

@@ -32,7 +32,9 @@ export default class Information extends React.Component {
             <div>项目</div>
           </span>
         </div>
-        <div className="infor-other"></div>
+        <div className="infor-other">
+          
+        </div>
       </div>
     );
   }

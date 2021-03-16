@@ -46,3 +46,13 @@ export function getArticleList(query){
     params:query
   })
 }
+
+// 获取具体文章
+const article ='/user/article/find'
+export function getArticle(query){
+  return request({
+    url:article,
+    method:'get',
+    params:query
+  })
+}

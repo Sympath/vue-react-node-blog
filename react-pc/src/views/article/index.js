@@ -1,5 +1,6 @@
 import React from "react";
-import { Select } from "antd";
+import {Link} from 'react-router-dom';
+import { Select ,Card} from "antd";
 import { getArticleList } from "../../api/api";
 
 import "../../assets/style/pages/article.scss";
@@ -43,32 +44,19 @@ export default class About extends React.Component {
           <div className="articles">
             {this.state.articles_arr.map((item, index) => {
               return (
-                <div
-                  className="article-item"
-                  onClick={() => {
-                    this.inDetailArticlePage(item._id);
-                  }}
-                  key={index}
-                >
-                  <div className="item-left">
-                    <h2>{item.title}</h2>
-                    <p>{item.article}</p>
-                    <div>
-                      <div className="read-commit-star">
-                        <span> 浏览:{item.read}</span>
-                        <span> 评论:{item.like}</span>
-                        <span> 点赞:{item.like}</span>
-                      </div>
-                      <div className="time">时间：{item.create_time}</div>
-                    </div>
+                <Card title={item.title} extra={<Link to={`/detail/article/${item._id}`}>查看文章</Link>} className="article-item" key={index}>
+                <p className="article-content">{item.article}</p>
+                <div className="bottom">
+                  <div className="bottom-left">
+                    <span>阅读量：{item.read}</span>
+                    <span>点赞量：{item.like}</span>
+                    <span>评论量：{item.like}</span>
                   </div>
-                  <div className="item-right">
-                    <img
-                      src={item.image ? item.image : this.state.image}
-                      alt="一张图片"
-                    />
+                  <div className="bottom-right">
+                    <span>{item.create_time}</span>
                   </div>
                 </div>
+              </Card>
               );
             })}
           </div>
@@ -86,11 +74,5 @@ export default class About extends React.Component {
       });
     });
   }
-  inDetailArticlePage(id) {
-    console.log(id);
-    // 跳转到详情页
-    this.props.history.push("/detail/article", {
-      id: id,
-    });
-  }
+
 }

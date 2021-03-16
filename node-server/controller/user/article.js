@@ -54,7 +54,7 @@ class Article {
   }
 
   // 获取指定文章
-  async adminGetArticle(req, res) {
+  async userGetArticle(req, res) {
     try {
       const id = req.query.id;
       const article = await ArticleInformation.findById(id);
