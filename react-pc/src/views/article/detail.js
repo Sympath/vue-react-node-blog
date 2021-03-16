@@ -1,4 +1,5 @@
 import React from "react";
+import markdown from '../../utils/markdown'
 import "../../assets/style/pages/article-detail.scss";
 import {getArticle} from '../../api/api'
 
@@ -8,7 +9,8 @@ export default class ArticleDetail extends React.Component {
     this.state = {
       detail:{
 
-      }
+      },
+      articleContent:''
     };
   }
   render() {
@@ -23,9 +25,13 @@ export default class ArticleDetail extends React.Component {
             <span>创作时间：{this.state.detail.create_time}</span>
             <span>阅读量：{this.state.detail.read}</span>
           </div>
-          <div dangerouslySetInnerHTML = {{ __html:this.state.detail.article ? this.state.detail.article : null }}>
-
-          </div>
+          <div
+              dangerouslySetInnerHTML={{
+                __html: this.state.detail.article
+                  
+              }}
+            />
+         
         </div>
       </>
     );

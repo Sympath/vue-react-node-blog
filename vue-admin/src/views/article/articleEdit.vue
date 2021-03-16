@@ -46,6 +46,7 @@
       <mavon-editor
         class="editor"
         ref="editor"
+        @change="change"
         v-model="form.article"
         placeholder="写一篇文章吧...."
         @imgAdd="handleEditorImgAdd"
@@ -81,6 +82,7 @@ export default {
         author: "付金廷",
         category: "",
       },
+      html:"",
       article_types: null,
       imgUrl: "",
       domain: "http://cdn.codeting.top/",
@@ -140,6 +142,10 @@ export default {
     handleEditorImgDel(pos, $file) {
       console.log(pos, $file);
     },
+     change(value, render){
+        this.html = render;
+        console.log(this.html);
+    }
   },
   created() {
     this.getArticleCate();

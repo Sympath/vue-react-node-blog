@@ -47,8 +47,9 @@
 
     <el-form-item label="文章内容">
       <mavon-editor
+       
         class="editor"
-        ref="editor"
+        ref="md"
         v-model="form.article"
         placeholder="写一篇文章吧...."
       >
@@ -78,6 +79,7 @@ export default {
         category: "",
         create_time: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
       },
+      html:'',
       article_types: null,
       imgUrl:'',
       domain:'http://cdn.codeting.top/'
@@ -125,7 +127,8 @@ export default {
        this.imgUrl = res.imgUrl
        this.form.image= this.domain + res.imgUrl
     
-    }
+    },
+    
   },
   created() {
     this.getArticleCate();
