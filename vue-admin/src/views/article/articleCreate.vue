@@ -47,11 +47,11 @@
 
     <el-form-item label="文章内容">
       <mavon-editor
-       
         class="editor"
         ref="md"
         v-model="form.article"
         placeholder="写一篇文章吧...."
+        @change="_change"
       >
       </mavon-editor>
     </el-form-item>
@@ -90,6 +90,7 @@ export default {
   },
   methods: {
     save() {
+      this.$set(this.form,'html',this.html)
       createArticle(this.form).then((res) => {
         this.$message({
           message: res.data.message,
@@ -116,6 +117,9 @@ export default {
             message: "已取消",
           });
         });
+    },
+    _change(r,v){
+        this.html =  v
     },
     getArticleCate() {
       getArticleType().then((res) => {

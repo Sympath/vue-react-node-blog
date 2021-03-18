@@ -45,7 +45,7 @@ export default class About extends React.Component {
             {this.state.articles_arr.map((item, index) => {
               return (
                 <Card title={item.title} extra={<Link to={`/detail/article/${item._id}`}>查看文章</Link>} className="article-item" key={index}>
-                <p className="article-content">{item.article}</p>
+                {/* <p className="article-content">{item.article}</p> */}
                 <div className="bottom">
                   <div className="bottom-left">
                     <span>阅读量：{item.read}</span>

@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 
 const articleInformationSchema = new Schema({
   article:String,
+  html:String,
   author: String,
   category: String,
   isPublic: Boolean,

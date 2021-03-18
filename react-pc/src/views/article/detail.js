@@ -1,6 +1,6 @@
 import React from "react";
-import markdown from '../../utils/markdown'
 import "../../assets/style/pages/article-detail.scss";
+import 'mavon-editor/dist/css/index.css'
 import {getArticle} from '../../api/api'
 
 export default class ArticleDetail extends React.Component {
@@ -26,9 +26,9 @@ export default class ArticleDetail extends React.Component {
             <span>阅读量：{this.state.detail.read}</span>
           </div>
           <div
+              className="markdown-body"
               dangerouslySetInnerHTML={{
-                __html: this.state.detail.article
-                  
+                __html: this.state.detail.html
               }}
             />
          

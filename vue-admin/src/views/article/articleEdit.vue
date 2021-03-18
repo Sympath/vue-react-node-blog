@@ -46,7 +46,7 @@
       <mavon-editor
         class="editor"
         ref="editor"
-        @change="change"
+        @change="_change"
         v-model="form.article"
         placeholder="写一篇文章吧...."
         @imgAdd="handleEditorImgAdd"
@@ -116,6 +116,7 @@ export default {
       }
     },
     _edit() {
+      this.$set(this.form,'html',this.html)
       editArticle(this.form).then((res) => {
         this.$message({
           type: "success",
@@ -142,10 +143,9 @@ export default {
     handleEditorImgDel(pos, $file) {
       console.log(pos, $file);
     },
-     change(value, render){
-        this.html = render;
-        console.log(this.html);
-    }
+     _change(r,v){
+        this.html =  v
+    },
   },
   created() {
     this.getArticleCate();
