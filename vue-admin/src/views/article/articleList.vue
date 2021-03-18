@@ -38,7 +38,7 @@
       <el-table-column type="index" label="序号" width="60" align="center"> </el-table-column>
       <el-table-column prop="create_time" label="发布时间" width="160" align="center">
       </el-table-column>
-      <el-table-column prop="title" label="文章标题" width="260" align="center"> </el-table-column>
+      <el-table-column prop="title" label="文章标题" width="360" align="center"> </el-table-column>
       <el-table-column prop="author" label="作者" width="110" align="center">
       </el-table-column>
       <el-table-column prop="category" label="所属分类" width="160" align="center">
@@ -54,7 +54,7 @@
       <el-table-column prop="read" width="80" label="阅读量" align="center"> </el-table-column>
       <el-table-column prop="like" width="70" label="点赞量" align="center"> </el-table-column>
       <el-table-column prop="name" width="70" label="评论量" align="center"> </el-table-column>
-      <el-table-column fixed="right" label="操作">
+      <el-table-column fixed="right" label="操作" width="250">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="success" size="small"
             >查看</el-button

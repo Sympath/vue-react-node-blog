@@ -56,3 +56,21 @@ export function getArticle(query){
     params:query
   })
 }
+// 阅读量
+const read ='/user/article/read'
+export function postArticleRead(data){
+  return request({
+    url:read,
+    method:'post',
+    data:data
+  })
+}
+// 点赞
+const like ='/user/article/like'
+export function postArticleLike(data){
+  return request({
+    url:like,
+    method:'post',
+    data:data
+  })
+}

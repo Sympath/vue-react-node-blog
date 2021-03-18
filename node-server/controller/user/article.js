@@ -52,6 +52,34 @@ class Article {
       });
     }
   }
+  
+  // 增加文章阅读量
+  async userPostArticleRead(req, res) {
+    console.log(req.body.id);
+    try {
+      const id = req.body.id;
+      const old_article = await ArticleInformation.findById(id);
+      await ArticleInformation.findByIdAndUpdate(id,{
+        read:old_article.read+1
+      });
+      const article = await ArticleInformation.findById(id);
+      res.send({ article });
+    } catch (error) {}
+  }
+  // 点赞
+  async userPostArticleLike(req, res) {
+    console.log(req.body.id);
+    try {
+      const id = req.body.id;
+      const old_article = await ArticleInformation.findById(id);
+      await ArticleInformation.findByIdAndUpdate(id,{
+        like:old_article.like+1
+      });
+      const article = await ArticleInformation.findById(id);
+      res.send({ article });
+    } catch (error) {}
+  }
+  
 
   // 获取指定文章
   async userGetArticle(req, res) {
