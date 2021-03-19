@@ -3,7 +3,7 @@
   box-sizing: border-box;
   overflow-y: scroll;
   height: 100vh;
-  background-color: #F4F5F5;
+  background-color: #f4f5f5;
   .article-search {
     display: flex;
     justify-content: flex-end;
@@ -15,33 +15,29 @@
   }
   .articles {
     padding-top: 50px;
-    .article-item{
+    .article-item {
       margin-top: 10px;
-      height: 125px;
-      .ant-card-head-title{
+      .ant-card-head-title {
         font-size: 18px;
         font-weight: 800;
       }
-      .article-content{
-        height: 45px;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        text-indent:25px;
-       
-      }
-      .bottom{
-        margin-top: 0px;
-        display:flex;
+      // .article-content {
+      //   height: 45px;
+      //   display: -webkit-box;
+      //   -webkit-box-orient: vertical;
+      //   -webkit-line-clamp: 2;
+      //   overflow: hidden;
+      //   text-indent: 25px;
+      // }
+      .bottom {
+        display: flex;
         justify-content: space-between;
         color: grey;
-        .bottom-left{
+        .bottom-left {
           width: 20%;
-          display:flex;
+          display: flex;
           justify-content: space-between;
         }
-       
       }
     }
   }
