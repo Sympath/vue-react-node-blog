@@ -3,7 +3,9 @@ import { Input, Button, Avatar, Comment } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 import "../../assets/style/pages/article-detail.scss";
 import "mavon-editor/dist/css/index.css";
-import { getArticle, postArticleRead, postArticleLike } from "../../api/api";
+import { getArticle, postArticleRead, postArticleLike ,postArticleComment} from "../../api/api";
+import {getLocalStorage} from '../../utils/local-storage'
+
 const { TextArea } = Input;
 
 export default class ArticleDetail extends React.Component {
@@ -12,7 +14,9 @@ export default class ArticleDetail extends React.Component {
     this.state = {
       detail: {},
       articleContent: "",
+      commentTxt:''
     };
+    this.handleChange = this.handleChange.bind(this);
   }
   render() {
     return (
@@ -49,8 +53,11 @@ export default class ArticleDetail extends React.Component {
                 className="comment-textarea"
                 placeholder="说点什么吧！"
                 rows={5}
+                name="commentTxt"
+                value={this.state.commentTxt}
+                onChange={this.handleChange}
               />
-              <Button className="comment-btn" type="primary">
+              <Button className="comment-btn" type="primary" onClick={this.sendComment}>
                 发 送
               </Button>
             </div>
@@ -117,5 +124,21 @@ export default class ArticleDetail extends React.Component {
       });
       console.log(res);
     });
+  }
+  // 评论输入框双向绑定
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+  // 发送评论
+  sendComment=()=>{
+    postArticleComment({
+      articleId:this.props.match.params.id,
+      userId:getLocalStorage('user_id').user_id,
+      commentTxt:this.state.commentTxt
+    }).then(res=>{
+      console.log(res);
+    })
   }
 }

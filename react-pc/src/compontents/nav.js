@@ -15,6 +15,7 @@ import {
 } from "@ant-design/icons";
 import "../assets/style/compontents/nav.scss";
 import {userLogin ,userRegister} from '../api/api'
+import {setLocalStorage} from '../utils/local-storage'
 
 export default class Nav extends React.Component {
   constructor(props) {
@@ -62,10 +63,10 @@ export default class Nav extends React.Component {
             </NavLink>
           </div>
           <div className="nav-right">
-            <Button type="primary" onClick={this.loginModelShow}>
+            <Button className="login-btn" type="primary" onClick={this.loginModelShow}>
               <LoginOutlined />登 录
             </Button>
-            <Button className="register"  onClick={this.registerModelShow}>
+            <Button className="register-btn"  onClick={this.registerModelShow}>
               <LogoutOutlined />注 册
             </Button>
           </div>
@@ -229,7 +230,12 @@ export default class Nav extends React.Component {
         nackname:''
       });
       message.success(res.data.message);
-      
+      console.log('2');
+      setLocalStorage({
+        token: res.data.token,
+        nackname: res.data.nackname,
+        user_id: res.data.user_id,
+      });
     })
   }
   // 注册
@@ -239,6 +245,7 @@ export default class Nav extends React.Component {
       password:this.state.password,
       nackname:this.state.nackname
     }).then(res=>{
+      
       this.setState({
         isRegisterModalVisible: false,
         account:'',
@@ -246,6 +253,8 @@ export default class Nav extends React.Component {
         nackname:''
       });
       message.success(res.data.message);
+     
+
     })
   }
 }

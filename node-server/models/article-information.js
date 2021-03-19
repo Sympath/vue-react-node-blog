@@ -13,7 +13,11 @@ const articleInformationSchema = new Schema({
   image:String,
   title: String,
   create_time:String,
-  comments:String,
+  comments:Array,
+  comment:{
+    type:Number,
+    default:0
+  },
   like:{
     type:Number,
     default:0

@@ -39,6 +39,8 @@ class UserLoginReset {
           status: 200,
           token: userToken,
           message: "登录成功!",
+          user_id:user._id,
+          nackname:user.nackname
         });
       }
     } catch (error) {}

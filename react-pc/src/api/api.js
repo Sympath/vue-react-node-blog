@@ -74,3 +74,12 @@ export function postArticleLike(data){
     data:data
   })
 }
+// 发送文章评论
+const post_comment ='/user/article/comment'
+export function postArticleComment(data){
+  return request({
+    url:post_comment,
+    method:'post',
+    data:data
+  })
+}
