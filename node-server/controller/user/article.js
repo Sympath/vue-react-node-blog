@@ -1,6 +1,7 @@
 // 引入model层
 import ArticleTypeInformation from "../../models/article-type";
 import ArticleInformation from "../../models/article-information";
+import UserInformation from "../../models/user-information";
 
 class Article {
   // 获取文章所有分类
@@ -92,16 +93,22 @@ class Article {
 
   // 评论文章
   async userPostArticleComment(req, res) {
-    const { articleId, userId, commentTxt } = req.body;
+    const { articleId, userId, comment_txt ,comment_time} = req.body;
     try {
+      const user = await UserInformation.findById(userId);
       const article = await ArticleInformation.findById(articleId);
       article.comments.push({
         userId: userId,
         articleId: articleId,
-        commentTxt: commentTxt,
+        comment_txt: comment_txt,
+        comment_time:comment_time,
+        nackname:user.nackname
       });
       const new_article = await ArticleInformation.findByIdAndUpdate(articleId,{
         comments: article.comments
+      })
+      res.send({
+        message:'评论成功'
       })
     } catch (error) {}
   }

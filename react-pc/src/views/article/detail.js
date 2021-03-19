@@ -1,5 +1,7 @@
 import React from "react";
-import { Input, Button, Avatar, Comment } from "antd";
+import { Input, Button, Avatar, Comment ,Tooltip,message} from "antd";
+import dayjs from "dayjs";
+import moment from 'moment';
 import { LikeOutlined } from "@ant-design/icons";
 import "../../assets/style/pages/article-detail.scss";
 import "mavon-editor/dist/css/index.css";
@@ -12,9 +14,12 @@ export default class ArticleDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      detail: {},
+      detail: {
+        comments:[]
+      },
       articleContent: "",
-      commentTxt:''
+      comment_txt:'',
+      comment_time:dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -53,8 +58,8 @@ export default class ArticleDetail extends React.Component {
                 className="comment-textarea"
                 placeholder="说点什么吧！"
                 rows={5}
-                name="commentTxt"
-                value={this.state.commentTxt}
+                name="comment_txt"
+                value={this.state.comment_txt}
                 onChange={this.handleChange}
               />
               <Button className="comment-btn" type="primary" onClick={this.sendComment}>
@@ -65,23 +70,31 @@ export default class ArticleDetail extends React.Component {
           <div className="comments">
             <div className="comment">
               {/* 评论 */}
+              {
+                this.state.detail.comments.map((v,i)=>{
+                  return (  
+                    <Comment
+                    actions={[<span key="comment-nested-reply-to">回复</span>]}
+                    author={<a>{v.nackname}</a>}
+                    avatar={
+                      <Avatar size={40}>{v.nackname}</Avatar>
+                     
+                    }
+                    content={
+                      <p>
+                        {v.comment_txt}
+                      </p>
+                    }
+                    datetime={<Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
+                    <span>{moment().subtract(1, 'days').fromNow()}</span>
+                  </Tooltip>}
+                  >
+                  </Comment>
+                  )
+                })
+              }
 
-              <Comment
-                actions={[<span key="comment-nested-reply-to">回复</span>]}
-                author={<a>付金廷</a>}
-                avatar={
-                  <Avatar
-                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                    alt="Han Solo"
-                  />
-                }
-                content={
-                  <p>
-                    我们提供一系列的设计原则，实用的模式和高质量的设计资源(素描和Axure)。
-                  </p>
-                }
-              >
-              </Comment>
+              
             </div>
           </div>
 
@@ -136,9 +149,14 @@ export default class ArticleDetail extends React.Component {
     postArticleComment({
       articleId:this.props.match.params.id,
       userId:getLocalStorage('user_id').user_id,
-      commentTxt:this.state.commentTxt
+      comment_txt:this.state.comment_txt,
+      comment_time:this.state.comment_time,
     }).then(res=>{
-      console.log(res);
+      message.success(res.data.message);
+      this.setState({
+        comment_txt: '',
+      });
+      this.init();
     })
   }
 }
