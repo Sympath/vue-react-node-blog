@@ -25,7 +25,7 @@ export default function RootRouter() {
         <Route path="/website" component={Website}></Route>
         <Route path="/blogger" component={Blogger}></Route>
 
-        <Route path="/detail/article/:id" component={ArticleDetail}></Route>
+        <Route path="/detail/:id" component={ArticleDetail}></Route>
       </Switch>
     </Router>
   );

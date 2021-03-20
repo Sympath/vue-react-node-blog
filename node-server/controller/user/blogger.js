@@ -10,6 +10,14 @@ class BloggerInfor {
       res.send(infor);
     } catch (error) {}
   }
+  // 获取关于博主内容
+  
+  async userGetBloggerContent(req, res) {
+    try {
+      const infor = await BloggerInformation.find();
+      res.send({experience:infor[0].experience});
+    } catch (error) {}
+  }
   
 }
 

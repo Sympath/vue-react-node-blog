@@ -2,6 +2,7 @@
 import ArticleTypeInformation from "../../models/article-type";
 import ArticleInformation from "../../models/article-information";
 import UserInformation from "../../models/user-information";
+import random from "string-random";
 
 class Article {
   // 获取文章所有分类
@@ -11,39 +12,64 @@ class Article {
       res.send(article_types[0].article_type);
     } catch (error) {}
   }
+  // 获取推荐页文章列表
+  async userRecommendArticleList(req, res) {
+    const {category, current, limit } = req.query;
+    if (category) {
+      var listLength = await ArticleInformation.find({
+        $and: [{ category: category }, { isPublic: true ,isCommend:true}],
+      });
+      var list = await ArticleInformation.find({
+        $and: [{ category: category }, { isPublic: true ,isCommend:true}],
+      })
+        .sort({ _id: -1 })
+        .skip((current - 1) * limit)
+        .limit(parseInt(limit));
+    }else{
+      var listLength = await ArticleInformation.find({isPublic:true,isCommend:true});
+      var list = await ArticleInformation.find({isPublic:true,isCommend:true})
+        .sort({ _id: -1 })
+        .skip((current - 1) * limit)
+        .limit(parseInt(limit));
+    }
+    
+
+    if (listLength.length) {
+        res.send({ list, total: listLength.length });
+    } else {
+      res.send({
+        status: 220,
+        type: "ERROR_LIST",
+        message: "不存在该文章信息",
+        list: [],
+        total: listLength.length,
+      });
+    }
+  }
 
   //获取文章列表(包括条件查询)
+
   async userArticleList(req, res) {
-    const { category, title, current, limit } = req.query;
-    if (category && title) {
+    const { category, current, limit } = req.query;
+    if (category) {
       var listLength = await ArticleInformation.find({
-        $and: [{ category: category }, { title: title }],
+        $and: [{ category: category }, { isPublic: true }],
       });
       var list = await ArticleInformation.find({
-        $and: [{ category: category }, { title: title }],
+        $and: [{ category: category }, { isPublic: true }],
       })
         .sort({ _id: -1 })
         .skip((current - 1) * limit)
         .limit(parseInt(limit));
-    } else if (category || title) {
-      var listLength = await ArticleInformation.find({
-        $or: [{ category: category }, { title: title }],
-      });
-      var list = await ArticleInformation.find({
-        $or: [{ category: category }, { title: title }],
-      })
-        .sort({ _id: -1 })
-        .skip((current - 1) * limit)
-        .limit(parseInt(limit));
-    } else {
-      var listLength = await ArticleInformation.find();
-      var list = await ArticleInformation.find()
+    }else{
+      var listLength = await ArticleInformation.find({ isPublic: true});
+      var list = await ArticleInformation.find({ isPublic: true})
         .sort({ _id: -1 })
         .skip((current - 1) * limit)
         .limit(parseInt(limit));
     }
     if (listLength.length) {
-      res.send({ list, total: listLength.length });
+        res.send({ list, total: listLength.length });
     } else {
       res.send({
         status: 220,
@@ -93,24 +119,36 @@ class Article {
 
   // 评论文章
   async userPostArticleComment(req, res) {
-    const { articleId, userId, comment_txt ,comment_time} = req.body;
+    const { articleId, userId, comment_txt, comment_time } = req.body;
     try {
       const user = await UserInformation.findById(userId);
       const article = await ArticleInformation.findById(articleId);
+      // 生成随机数和时间戳，相加生成唯一id
+      const c_time = new Date().getTime();
+      const id = random(16) + c_time;
+
       article.comments.push({
         userId: userId,
         articleId: articleId,
         comment_txt: comment_txt,
-        comment_time:comment_time,
-        nackname:user.nackname
+        comment_time: comment_time,
+        nackname: user.nackname,
+        id: id,
       });
-      const new_article = await ArticleInformation.findByIdAndUpdate(articleId,{
-        comments: article.comments
-      })
+      const new_article = await ArticleInformation.findByIdAndUpdate(
+        articleId,
+        {
+          comments: article.comments,
+        }
+      );
       res.send({
-        message:'评论成功'
-      })
+        message: "评论成功",
+      });
     } catch (error) {}
+  }
+  // 删除评论
+  async userRemoveArticleComment(req, res) {
+    console.log(req.query);
   }
 }
 

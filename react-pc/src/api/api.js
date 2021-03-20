@@ -36,8 +36,17 @@ export function getTypeArticleProjectNums() {
     method: 'get'
   });
 }
+// 推荐页获取文章列表
+const recom_articles ='/user/article/recommend'
+export function getArticleRecommendList(query){
+  return request({
+    url:recom_articles,
+    method:'get',
+    params:query
+  })
+}
 
-// 获取技术文章页面技术文章列表
+//获取 技术文章页文章列表
 const articles ='/user/article/list'
 export function getArticleList(query){
   return request({
@@ -82,4 +91,35 @@ export function postArticleComment(data){
     method:'post',
     data:data
   })
+}
+// 删除某条评论
+const delete_comment ='/user/article/comment'
+export function deleteArticleComment(query){
+  return request({
+    url: delete_comment,
+    method:'delete',
+    params:query
+  })
+}
+
+// 获取项目列表
+
+const projects ='/user/project/list'
+export function getProjectList(query){
+  return request({
+    url:projects,
+    method:'get',
+    params:query
+  })
+}
+
+// 获取关于博主内容
+
+const blogger_infor_content = '/user/blogger/content'; 
+export function getBloggerContent(query) {
+  return request({
+    url: blogger_infor_content,
+    method: 'get',
+    params: query,
+  });
 }

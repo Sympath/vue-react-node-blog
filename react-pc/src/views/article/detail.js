@@ -1,11 +1,10 @@
 import React from "react";
 import { Input, Button, Avatar, Comment ,Tooltip,message} from "antd";
 import dayjs from "dayjs";
-import moment from 'moment';
 import { LikeOutlined } from "@ant-design/icons";
 import "../../assets/style/pages/article-detail.scss";
 import "mavon-editor/dist/css/index.css";
-import { getArticle, postArticleRead, postArticleLike ,postArticleComment} from "../../api/api";
+import { getArticle, postArticleRead, postArticleLike ,postArticleComment,deleteArticleComment} from "../../api/api";
 import {getLocalStorage} from '../../utils/local-storage'
 
 const { TextArea } = Input;
@@ -74,7 +73,7 @@ export default class ArticleDetail extends React.Component {
                 this.state.detail.comments.map((v,i)=>{
                   return (  
                     <Comment
-                    actions={[<span key="comment-nested-reply-to">回复</span>]}
+                    actions={[<span onClick={this._reply} key="comment-nested-reply-to">回复</span>,<span onClick={()=>{this._delete(v.id)}} key="comment-nested-reply-to">删除</span>]}
                     author={<a>{v.nackname}</a>}
                     avatar={
                       <Avatar size={40}>{v.nackname}</Avatar>
@@ -85,8 +84,8 @@ export default class ArticleDetail extends React.Component {
                         {v.comment_txt}
                       </p>
                     }
-                    datetime={<Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-                    <span>{moment().subtract(1, 'days').fromNow()}</span>
+                    datetime={<Tooltip title={v.comment_time}>
+                    <span>{v.comment_time}</span>
                   </Tooltip>}
                   >
                   </Comment>
@@ -137,6 +136,20 @@ export default class ArticleDetail extends React.Component {
       });
       console.log(res);
     });
+  }
+  _reply=()=>{
+    message.warning('此功能开发中,预计6月份上线');
+  }
+  _delete(v){
+    // deleteArticleComment({
+    //   id:v,
+    //   articleId:this.props.match.params.id,
+    //   userId:getLocalStorage('user_id').user_id
+    // }).then(res=>{
+    //   message.success(res.data.message);
+    // })
+    // this.init();
+    message.warning('此功能开发中,预计6月份上线');
   }
   // 评论输入框双向绑定
   handleChange(event) {

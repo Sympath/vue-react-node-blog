@@ -24,6 +24,9 @@ service.interceptors.response.use(
     } else if (res.status === 213) {
       message.error(res.message);
       return Promise.reject("error");
+    } else if (res.status === 221) {
+      message.error(res.message);
+      return Promise.reject("error");
     } else if (res.status === 510) {
       message.error(res.message);
       return Promise.reject("error");

@@ -10,6 +10,7 @@ const articleInformationSchema = new Schema({
   author: String,
   category: String,
   isPublic: Boolean,
+  isCommend: Boolean,
   image:String,
   title: String,
   create_time:String,

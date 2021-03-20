@@ -16,6 +16,8 @@ import userLogin from "./user/login";
 import userBloggerInfor from "./user/blogger";
 import userDictionary from "./user/dictionary";
 import userArticle from "./user/article";
+import userProject from "./user/project";
+
 
 
 
@@ -35,7 +37,8 @@ export default (app) => {
     app.use("/user", userLogin);
     app.use("/user", userBloggerInfor);
     app.use("/user", userDictionary);
-    app.use('/user', userArticle)
+    app.use('/user', userArticle);
+    app.use('/user', userProject);
     
   };
   

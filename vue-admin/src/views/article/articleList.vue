@@ -46,6 +46,9 @@
       <el-table-column prop="isPublic" width="78" label="是否公开" align="center">
         <template slot-scope="scope">{{scope.row.isPublic == true ? '是' : '否'}}</template>
       </el-table-column>
+      <el-table-column prop="isCommend" width="78" label="是否推荐" align="center">
+        <template slot-scope="scope">{{scope.row.isCommend == true ? '是' : '否'}}</template>
+      </el-table-column>
       <el-table-column width="100" label="文章封面" align="center">
         <template slot-scope="scope">
           <img :src="scope.row.image" class="head_pic"/>

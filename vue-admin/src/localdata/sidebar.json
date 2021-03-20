@@ -159,12 +159,6 @@
                         "title":"用户评论",
                         "spellname":"UserComment",
                         "routing":"/user/comment"
-                    },
-                    {
-                        "id":54,
-                        "title":"搜索历史",
-                        "spellname":"SearchHistory",
-                        "routing":"/user/search"
                     }
                    ]
             },
@@ -187,47 +181,6 @@
                         "routing":"/register"
                     }
                 ]
-            },
-            {
-                "id":7,
-                "title":"统计报表",
-                "icon":"el-icon-s-check",
-                "children":[
-                     
-                    {
-                        "id":71,
-                        "title":"用户统计",
-                        "spellname":"UserReport",
-                        "routing":"/report/user"
-                    },
-                    {
-                        "id":72,
-                        "title":"留言统计",
-                        "spellname":"MessageReport",
-                        "routing":"/report/message"
-                    },
-                    {
-                        "id":73,
-                        "title":"点赞统计",
-                        "spellname":"LikeReport",
-                        "routing":"/report/like"
-                    },
-                   
-                    {
-                        "id":74,
-                        "title":"评论统计",
-                        "spellname":"CommentReport",
-                        "routing":"/report/comment"
-                    },
-                    {
-                        "id":8,
-                        "title":"浏览量统计",
-                        "spellname":"ReadReport",
-                        "routing":"/report/read"
-                    }
-                    
-                    
-                   ]
             }
             
            

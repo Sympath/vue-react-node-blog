@@ -1,7 +1,7 @@
 <template>
   <el-form ref="form" :model="form" label-position="top" class="edit-article">
     <div class="article-t-a">
-      <el-form-item label="所属分类">
+      <el-form-item label="所属分类" class="cata">
         <el-select v-model="form.category" placeholder="请选择分类">
           <el-option
             v-for="item in article_types"
@@ -23,6 +23,17 @@
           active-text="是"
           inactive-text="否"
           v-model="form.isPublic"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          :width="45"
+        >
+        </el-switch>
+      </el-form-item>
+      <el-form-item label="是否推荐" class="isCommend">
+        <el-switch
+          active-text="是"
+          inactive-text="否"
+          v-model="form.isCommend"
           active-color="#13ce66"
           inactive-color="#ff4949"
           :width="45"
@@ -77,6 +88,7 @@ export default {
       form: {
         article: "",
         isPublic: true,
+        isCommend: true,
         title: "",
         image: "",
         author: "付金廷",
@@ -159,14 +171,20 @@ export default {
     display: flex;
     justify-content: space-between;
     width: 99%;
+    .cata{
+       width: 150px;
+    }
     .author {
-      width: 200px;
+      width: 150px;
     }
     .title {
-      width: 450px;
+      width: 300px;
     }
     .is-public {
       width: 100px;
+    }
+    .isCommend{
+       width: 100px;
     }
   }
   .editor {
