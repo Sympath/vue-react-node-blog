@@ -10,6 +10,15 @@ export function userLogin(data) {
   });
 }
 
+const github_login = '/user/githublogin';
+export function userGithubLogin(data) {
+  return request({
+    url: github_login,
+    method: 'post',
+    data: data,
+  });
+}
+
 const register = '/user/register'; 
 export function userRegister(data) {
   return request({
@@ -123,3 +132,6 @@ export function getBloggerContent(query) {
     params: query,
   });
 }
+
+
+// 

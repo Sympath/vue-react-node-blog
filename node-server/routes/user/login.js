@@ -7,5 +7,6 @@ const router = express.Router()
 // 前端用户登录
 router.post('/login', UserLoginReset.userLogin);
 router.post('/register', UserLoginReset.userRegister);
+router.post('/githublogin', UserLoginReset.userGithubLogin);
 
 export default router

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, HashRouter as Router } from "react-router-dom";
-import { Button, Modal, Input ,message} from "antd";
+import { Button, Modal, Input, message } from "antd";
 import {
   LoginOutlined,
   FireOutlined,
@@ -11,11 +11,14 @@ import {
   UserOutlined,
   LogoutOutlined,
   KeyOutlined,
-  SmileOutlined
+  SmileOutlined,
 } from "@ant-design/icons";
 import "../assets/style/compontents/nav.scss";
-import {userLogin ,userRegister} from '../api/api'
-import {setLocalStorage} from '../utils/local-storage'
+import { userLogin, userRegister ,userGithubLogin} from "../api/api";
+import { setLocalStorage } from "../utils/local-storage";
+import config from '../utils/config';
+import {getQueryStringByName} from '../utils/utils';
+
 
 export default class Nav extends React.Component {
   constructor(props) {
@@ -23,54 +26,57 @@ export default class Nav extends React.Component {
     this.state = {
       isLoginModalVisible: false,
       isRegisterModalVisible: false,
-      account:'',
-      password:'',
-      nackname:''
+      account: "",
+      password: "",
+      nackname: "",
+      code:""
     };
     this._login = this._login.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   }
- 
+
   render() {
     return (
       <div className="nav">
         <Router>
           <div className="nav-left">
-            <NavLink to="/recommend" style={{fontWeight:700}}>
+            <NavLink to="/recommend" style={{ fontWeight: 700 }}>
               <FireOutlined />
               <span>博主推荐</span>
             </NavLink>
-            <NavLink to="/article"  style={{fontWeight:700}}>
+            <NavLink to="/article" style={{ fontWeight: 700 }}>
               <ReadOutlined />
               <span> 技术文章</span>
             </NavLink>
-            <NavLink to="/project"  style={{fontWeight:700}}>
+            <NavLink to="/project" style={{ fontWeight: 700 }}>
               <ProjectOutlined />
               <span> 项目源码</span>
             </NavLink>
-            <NavLink to="/message"  style={{fontWeight:700}}>
+            <NavLink to="/message" style={{ fontWeight: 700 }}>
               <MessageOutlined />
               <span>给我留言</span>
             </NavLink>
-            <NavLink to="/website"  style={{fontWeight:700}}>
+            <NavLink to="/website" style={{ fontWeight: 700 }}>
               <ChromeOutlined />
               <span>关于网站</span>
             </NavLink>
-            <NavLink to="/blogger"  style={{fontWeight:700}}>
+            <NavLink to="/blogger" style={{ fontWeight: 700 }}>
               <UserOutlined />
               <span>关于博主</span>
             </NavLink>
           </div>
           <div className="nav-right">
-            <Button className="login-btn" type="primary" onClick={this.loginModelShow}>
+            <Button
+              className="login-btn"
+              type="primary"
+              onClick={this.loginModelShow}
+            >
               <LoginOutlined />登 录
             </Button>
-            <Button className="register-btn"  onClick={this.registerModelShow}>
+            <Button className="register-btn" onClick={this.registerModelShow}>
               <LogoutOutlined />注 册
             </Button>
           </div>
-
 
           {/* 登录的model */}
           <Modal
@@ -88,7 +94,7 @@ export default class Nav extends React.Component {
                 placeholder="请输入账号"
                 name="account"
                 value={this.state.account}
-                prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                 onChange={this.handleChange}
               />
               <Input
@@ -99,7 +105,7 @@ export default class Nav extends React.Component {
                 name="password"
                 placeholder="请输入密码"
                 value={this.state.password}
-                prefix={<KeyOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                prefix={<KeyOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                 onChange={this.handleChange}
               />
               <div className="login-submit">
@@ -117,7 +123,6 @@ export default class Nav extends React.Component {
             </div>
           </Modal>
 
-
           {/* 注册的Model */}
           <Modal
             className="register-model"
@@ -127,7 +132,6 @@ export default class Nav extends React.Component {
             footer={null}
           >
             <div>
-           
               <Input
                 className="account"
                 size="large"
@@ -135,7 +139,7 @@ export default class Nav extends React.Component {
                 placeholder="请输入账号"
                 name="account"
                 value={this.state.account}
-                prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                 onChange={this.handleChange}
               />
               <Input
@@ -146,22 +150,27 @@ export default class Nav extends React.Component {
                 name="password"
                 placeholder="请输入密码"
                 value={this.state.password}
-                prefix={<KeyOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                prefix={<KeyOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                 onChange={this.handleChange}
               />
-                <Input
+              <Input
                 className="nackname"
                 size="large"
                 style={{ marginBottom: 20 }}
                 name="nackname"
                 placeholder="请输入昵称 (可不填，系统随机生成)"
                 value={this.state.nackname}
-                prefix={<SmileOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
+                prefix={<SmileOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
                 onChange={this.handleChange}
               />
-               <div className="login-submit">
+              <div className="login-submit">
                 <Button
-                  style={{ width: "100%", marginBottom: "20px" ,backgroundColor:"#67C23A",color:"#fff"}}
+                  style={{
+                    width: "100%",
+                    marginBottom: "20px",
+                    backgroundColor: "#67C23A",
+                    color: "#fff",
+                  }}
                   onClick={this._register}
                 >
                   注 册
@@ -179,19 +188,17 @@ export default class Nav extends React.Component {
 
   // 登录框显示
   loginModelShow = () => {
-    message.info('推荐您使用github授权登录！');
+    message.info("推荐您使用github授权登录！");
     this.setState({
       isLoginModalVisible: true,
     });
-    
   };
   // 注册框显示
-  registerModelShow =()=>{
+  registerModelShow = () => {
     this.setState({
       isRegisterModalVisible: true,
     });
-    
-  }
+  };
   // 登录框消失
   handleCancelLogin = () => {
     this.setState({
@@ -205,7 +212,6 @@ export default class Nav extends React.Component {
     });
   };
 
-
   // 实现类似vue的双向绑定
   handleChange(event) {
     this.setState({
@@ -217,44 +223,76 @@ export default class Nav extends React.Component {
    * 业务代码
    */
 
-   // 登录
-   _login=()=>{
+  // 登录
+  _login = () => {
     userLogin({
-      account:this.state.account,
-      password:this.state.password
-    }).then(res=>{
+      account: this.state.account,
+      password: this.state.password,
+    }).then((res) => {
       this.setState({
         isLoginModalVisible: false,
-        account:'',
-        password:'',
-        nackname:''
+        account: "",
+        password: "",
+        nackname: "",
       });
       message.success(res.data.message);
-      console.log('2');
+      console.log("2");
       setLocalStorage({
         token: res.data.token,
         nackname: res.data.nackname,
         user_id: res.data.user_id,
       });
-    })
-  }
+    });
+  };
   // 注册
-  _register=()=>{
+  _register = () => {
     userRegister({
-      account:this.state.account,
-      password:this.state.password,
-      nackname:this.state.nackname
-    }).then(res=>{
-      
+      account: this.state.account,
+      password: this.state.password,
+      nackname: this.state.nackname,
+    }).then((res) => {
       this.setState({
         isRegisterModalVisible: false,
-        account:'',
-        password:'',
-        nackname:''
+        account: "",
+        password: "",
+        nackname: "",
       });
       message.success(res.data.message);
-     
+    });
+  };
 
+  // 点击github授权登录
+  handleOAuth = () => {
+    setLocalStorage({
+     beforeUrl:window.location.href
+    });
+    window.location.href = `${config.oauth_url}?client_id=${config.client_id}&redirect_url=${config.redirect_url}`
+  };
+  
+  getUser(code){
+    // console.log(code,9999999);
+    userGithubLogin({
+      code:code
+    }).then(res=>{
+      
     })
+  }
+  componentDidMount(){
+    const code = getQueryStringByName('code')
+    if(code){
+    /** react和vue不一样，这样是打印不出this.state.code的值的，需要以下的操作 **/ 
+    //   this.setState({
+    //     code:code
+    //   })
+    //   console.log(this.state.code,'3333333'); 
+      this.setState({
+        code:code
+      },()=>{
+        if (!this.state.code) {
+          return;
+        }
+        this.getUser(this.state.code)
+      })
+    }
   }
 }

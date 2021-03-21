@@ -12,7 +12,7 @@ class Check {
       if (infor) {
         next();
       } else {
-        res.send("小样,还使坏？");
+        res.send("你没有权限哦");
       }
     } else {
       res.send("你没有权限哦");
