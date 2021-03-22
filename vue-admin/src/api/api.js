@@ -66,7 +66,7 @@ export function postBloggerExperience(data){
     data:data
   })
 }
-// 个人经历,建立(修改/删除)PC以及H5的博主个人经历
+// 个人经历,获取(修改/删除)PC以及H5的博主个人经历
 
 export function getBloggerExperience(){
   return request({
@@ -92,6 +92,25 @@ export function getPublishNotice(){
     method:'get'
   })
 }
+// *********************************************关于网站(博客介绍)****************************************************
+
+// 提交博客介绍，对应pc h5关于网站
+const about_blog ='/admin/blog/introduce'
+export function postBlogIntroduce(data){
+  return request({
+    url:about_blog,
+    method:'post',
+    data:data
+  })
+}
+//  获取博客介绍，对应pc h5关于网站
+export function getBlogIntroduce(){
+  return request({
+    url:about_blog,
+    method:'get'
+  })
+}
+
 
 // *********************************************文章类型****************************************************
 // 博文管理,新建(修改/删除) PC以及H5的文章类型

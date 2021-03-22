@@ -19,7 +19,9 @@ export default class Blogger extends React.Component {
                   __html: this.state.experience,
                 }}
               />
+              <div className="other"></div>
         </div>
+    
     </>;
   }
   componentWillMount() {

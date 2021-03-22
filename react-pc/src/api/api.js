@@ -135,3 +135,11 @@ export function getBloggerContent(query) {
 
 
 // 
+const about_website_content = '/user/website/content'; 
+export function getWebsiteContent(query) {
+  return request({
+    url: about_website_content,
+    method: 'get',
+    params: query,
+  });
+}

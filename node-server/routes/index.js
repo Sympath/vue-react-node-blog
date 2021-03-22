@@ -9,6 +9,7 @@ import adminPublish from "./admin/publish";
 import adminArticle from "./admin/article";
 import adminProject from "./admin/project";
 import adminLink from "./admin/link";
+import adminBlog from "./admin/blog";
 import Check from "../middlewares/check";
 
 // PC和H5前端引入
@@ -17,6 +18,7 @@ import userBloggerInfor from "./user/blogger";
 import userDictionary from "./user/dictionary";
 import userArticle from "./user/article";
 import userProject from "./user/project";
+import userWebsite from "./user/website";
 
 
 
@@ -32,6 +34,7 @@ export default (app) => {
     app.use("/admin",adminArticle);
     app.use("/admin", adminProject);
     app.use("/admin", adminLink);
+    app.use("/admin", adminBlog);
 
     // pc/h5 用户前端
     app.use("/user", userLogin);
@@ -39,6 +42,7 @@ export default (app) => {
     app.use("/user", userDictionary);
     app.use('/user', userArticle);
     app.use('/user', userProject);
+    app.use('/user', userWebsite);
     
   };
   

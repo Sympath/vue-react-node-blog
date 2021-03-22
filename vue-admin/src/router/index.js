@@ -76,7 +76,7 @@ const routes = [
         name: "Blog",
         component: () => import("../views/blog/aboutBlog.vue"),
         meta: {
-          Cname:'博客管理',
+          Cname:'主站管理',
 					cname: '博客介绍'
 				}
         
