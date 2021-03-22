@@ -19,6 +19,7 @@ import userDictionary from "./user/dictionary";
 import userArticle from "./user/article";
 import userProject from "./user/project";
 import userWebsite from "./user/website";
+import userMessage from "./user/message";
 
 
 
@@ -43,6 +44,7 @@ export default (app) => {
     app.use('/user', userArticle);
     app.use('/user', userProject);
     app.use('/user', userWebsite);
+    app.use('/user', userMessage);
     
   };
   

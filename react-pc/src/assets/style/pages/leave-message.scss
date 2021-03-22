@@ -1,0 +1,34 @@
+.leave-message{
+    padding: 20px 80px;
+    height: 100vh;
+    overflow:scroll;
+    .textarea-bar {
+        width: 100%;
+        margin-top: 0 auto 0 auto;
+        display: flex;
+        justify-content: center;
+        .textarea {
+          width: 100%;
+          > h2 {
+            font-weight: 700;
+          }
+          .comment-textarea {
+            margin-top: 10px;
+          }
+          .comment-btn {
+            margin-top: 20px;
+            float: right;
+          }
+        }
+      }
+    .messages{
+        margin-top: 40px;
+        box-sizing: border-box;
+        .message{
+            margin-top: 10px;
+            background-color: #fff;
+            padding:15px 20px 0px 20px;
+            border-radius: 5px;
+        }
+    }
+}

@@ -134,11 +134,31 @@ export function getBloggerContent(query) {
 }
 
 
-// 
+// 获取个人网站内容
 const about_website_content = '/user/website/content'; 
 export function getWebsiteContent(query) {
   return request({
     url: about_website_content,
+    method: 'get',
+    params: query,
+  });
+}
+
+// 提交留言
+
+const message = '/user/leave/message'; 
+export function postMessage(data) {
+  return request({
+    url: message,
+    method: 'post',
+    data: data,
+  });
+}
+
+// 获取全部留言
+export function getMessage(query) {
+  return request({
+    url: message,
     method: 'get',
     params: query,
   });
