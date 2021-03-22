@@ -14,11 +14,10 @@ import {
   SmileOutlined,
 } from "@ant-design/icons";
 import "../assets/style/compontents/nav.scss";
-import { userLogin, userRegister ,userGithubLogin} from "../api/api";
+import { userLogin, userRegister, userGithubLogin } from "../api/api";
 import { setLocalStorage } from "../utils/local-storage";
-import config from '../utils/config';
-import {getQueryStringByName} from '../utils/utils';
-
+import config from "../utils/config";
+import { getQueryStringByName } from "../utils/utils";
 
 export default class Nav extends React.Component {
   constructor(props) {
@@ -29,7 +28,7 @@ export default class Nav extends React.Component {
       account: "",
       password: "",
       nackname: "",
-      code:""
+      code: "",
     };
     this._login = this._login.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -188,7 +187,7 @@ export default class Nav extends React.Component {
 
   // 登录框显示
   loginModelShow = () => {
-    message.info("推荐您使用github授权登录！");
+    message.info("推荐您使用QQ扫码登录！");
     this.setState({
       isLoginModalVisible: true,
     });
@@ -263,36 +262,49 @@ export default class Nav extends React.Component {
 
   // 点击github授权登录
   handleOAuth = () => {
-    setLocalStorage({
-     beforeUrl:window.location.href
-    });
-    window.location.href = `${config.oauth_url}?client_id=${config.client_id}&redirect_url=${config.redirect_url}`
+    /**
+     *  setLocalStorage({
+          beforeUrl: window.location.href,
+        });
+        window.location.href = `${config.oauth_url}?client_id=${config.client_id}&redirect_url=${config.redirect_url}`;
+     * 
+     */
+    message.error('因国内网络环境,用户体验极差,github登录已暂时废弃',5);
   };
-  
-  getUser(code){
-    // console.log(code,9999999);
-    userGithubLogin({
-      code:code
-    }).then(res=>{
-      
-    })
-  }
-  componentDidMount(){
-    const code = getQueryStringByName('code')
-    if(code){
-    /** react和vue不一样，这样是打印不出this.state.code的值的，需要以下的操作 **/ 
-    //   this.setState({
-    //     code:code
-    //   })
-    //   console.log(this.state.code,'3333333'); 
-      this.setState({
-        code:code
-      },()=>{
-        if (!this.state.code) {
-          return;
+
+  componentDidMount() {
+    /**
+     *  
+     * // giuhub登录暂时废弃，科学上网现在都进不去了
+    const code = getQueryStringByName("code");
+    if (code) {
+      this.setState(
+        {
+          code: code,
+        },
+        () => {
+          if (!this.state.code) {
+            return;
+          }
+          this.getUser(this.state.code);
         }
-        this.getUser(this.state.code)
-      })
+      );
     }
+     */
+
+
+    /**
+     * QQ登录
+     */
   }
+
+  /**
+    *  getUser(code) {
+        userGithubLogin({
+          code: code,
+        }).then((res) => {});
+       }
+   * 
+   * 
+   */
 }
