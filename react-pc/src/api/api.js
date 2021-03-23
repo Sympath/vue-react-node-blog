@@ -155,11 +155,31 @@ export function postMessage(data) {
   });
 }
 
+// 删除自己的留言
+
+export function deleteMessage(query) {
+  return request({
+    url: message,
+    method: 'delete',
+    params: query,
+  });
+}
+
 // 获取全部留言
 export function getMessage(query) {
   return request({
     url: message,
     method: 'get',
     params: query,
+  });
+}
+
+// 回复留言
+const reply_message = '/user/leave/replymessage'; 
+export function replyMessage(data){
+  return request({
+    url: reply_message,
+    method: 'post',
+    data: data,
   });
 }

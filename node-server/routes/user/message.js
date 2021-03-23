@@ -9,6 +9,10 @@ const router = express.Router();
 
 router.post("/leave/message", Message.userPostMessage);
 router.get("/leave/message", Message.userGetMessage);
+router.delete("/leave/message", Message.userDeleteMessage);
+router.post("/leave/replymessage", Message.userReplyMessage);
+
+
 
 
 

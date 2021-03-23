@@ -9,7 +9,9 @@ const messageInformationSchema = new Schema({
     nackname:String,
     user_avatar:String,
     message_txt:String,
-    message_time:String
+    message_time:String,
+    second_message:Array
+    
 
 });
 

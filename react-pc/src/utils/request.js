@@ -27,6 +27,9 @@ service.interceptors.response.use(
     } else if (res.status === 221) {
       message.error(res.message);
       return Promise.reject("error");
+    }else if (res.status === 231) { //无权删除留言
+      message.error(res.message);
+      return Promise.reject("error");
     }else if (res.status === 411) {
       message.error(res.message);
       return Promise.reject("error");
