@@ -75,7 +75,7 @@ export default class Message extends React.Component {
                       删除
                     </span>,
                   ]}
-                  author={<a><span style={{fontWeight:'700'}}>{v.nackname}</span></a>}
+                  author={<a><span style={{fontWeight:'700',color:'#000'}}>{v.nackname}</span></a>}
                   avatar={<Avatar size={40}>{v.nackname}</Avatar>}
                   content={<p>{v.message_txt}</p>}
                   datetime={
@@ -102,7 +102,7 @@ export default class Message extends React.Component {
                           回复
                         </span>
                       ]}
-                      author={<a><span style={{fontWeight:'700'}}>{value.nackname}</span> 回复 {value.first_nackname} {value.last_content? '('+ value.last_content+')':''}</a>}
+                      author={<a><span style={{fontWeight:'700',color:'#000'}}>{value.nackname}</span> 回复 <span style={{fontWeight:'600',color:'#000'}}>{value.first_nackname}</span> {value.last_content? '('+ value.last_content+')':''}</a>}
                       avatar={<Avatar size={40}>{value.nackname}</Avatar>}
                       content={<p>{value.secend_message_txt}</p>}
                       datetime={

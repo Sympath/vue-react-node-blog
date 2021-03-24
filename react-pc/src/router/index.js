@@ -1,7 +1,7 @@
 import React from "react"; //** 引入 支持jsx语法
 
 //** 将HashRouter引入并简化为router,将Route引入
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch,Redirect } from "react-router-dom";
 
 //** 引入组件
 import Recommend from "../views/recommend";
@@ -26,6 +26,8 @@ export default function RootRouter() {
         <Route path="/blogger" component={Blogger}></Route>
 
         <Route path="/detail/:id" component={ArticleDetail}></Route>
+        {/* 首页重定向 */}
+        <Redirect exact form="/" to="/recommend"></Redirect>
       </Switch>
     </Router>
   );

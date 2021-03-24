@@ -20,29 +20,25 @@
 
     <el-table :data="List" border style="width: 100%" fit highlight-current-row>
       <el-table-column type="index" label="序号" width="60"> </el-table-column>
+      <el-table-column prop="author" label="用户ID" width="160">
+      </el-table-column>
       <el-table-column prop="create_time" label="用户账号" width="160">
       </el-table-column>
       <el-table-column prop="title" label="用户昵称" width="260">
       </el-table-column>
-      <el-table-column prop="author" label="性别" width="110">
+      <el-table-column prop="category" label="头像" width="120">
       </el-table-column>
-      <el-table-column prop="category" label="头像" width="160">
-      </el-table-column>
-      <el-table-column prop="isPublic" width="注册时间" label="是否公开">
+      <el-table-column prop="isPublic" width="150" label="注册时间">
       </el-table-column>
       <el-table-column prop="read" width="80" label="留言量"> </el-table-column>
-      <el-table-column prop="like" width="70" label="点赞量"> </el-table-column>
       <el-table-column prop="name" width="70" label="评论量"> </el-table-column>
-      <el-table-column fixed="right" label="操作" width="220">
+      <el-table-column fixed="right" label="操作" width="200">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="success" size="small"
-            >查看</el-button
-          >
-          <el-button type="primary" size="small" @click="handleClick(scope.row)"
-            >编辑</el-button
+            >查看信息</el-button
           >
           <el-button type="danger" size="small" @click="remove(scope.row)"
-            >删除</el-button
+            >注销账号</el-button
           >
         </template>
       </el-table-column>
