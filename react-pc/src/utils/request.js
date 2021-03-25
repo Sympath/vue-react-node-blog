@@ -1,9 +1,10 @@
 import axios from "axios";
-import { message } from 'antd';
+import { message } from "antd";
 
 const service = axios.create({
-  baseURL: "http://localhost:3000", //本地
+  // baseURL: "http://localhost:3000", //本地
   // baseURL: "http://172.28.75.196:3000", //局域网
+  baseURL: "http://123.57.5.134:3000",
   timeout: 5000, // 请求超时时间
 });
 
@@ -27,16 +28,17 @@ service.interceptors.response.use(
     } else if (res.status === 221) {
       message.error(res.message);
       return Promise.reject("error");
-    }else if (res.status === 231) { //无权删除留言
+    } else if (res.status === 231) {
+      //无权删除留言
       message.error(res.message);
       return Promise.reject("error");
-    }else if (res.status === 411) {
+    } else if (res.status === 411) {
       message.error(res.message);
       return Promise.reject("error");
     } else if (res.status === 510) {
       message.error(res.message);
       return Promise.reject("error");
-    }else {
+    } else {
       return response;
     }
   },
@@ -50,7 +52,5 @@ service.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-
 
 export default service;
