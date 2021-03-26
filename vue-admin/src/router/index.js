@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { getLocalStorage } from '@/utils/local-storage';
 
 import Home from "../views/home";
 import Login from "../views/login";
@@ -11,6 +12,7 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
+    meta: { login: true },
   },
   {
 		path: '/',
@@ -257,7 +259,22 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode:'history',  //上线打包改为history
   routes
 })
+// 路由前置守卫
+router.beforeEach((to, from, next) => {
+	const { Authorization } = getLocalStorage('Authorization');
+
+	//如果没有token，并且不是登录页,跳转到登录页
+	if (!Authorization) {
+		if (!to.meta.login) {
+			console.log('login');
+			next({ name: 'login' });
+			return;
+		}
+	}
+	next();
+});
 
 export default router
