@@ -7,7 +7,7 @@ import "../../assets/style/pages/recommend.scss";
 
 const { Option } = Select;
 
-export default class Article extends React.Component {
+export default class Recommend extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -21,28 +21,8 @@ export default class Article extends React.Component {
   render() {
     return (
       <>
-        <div className="article">
-          <div className="article-search">
-            <Select
-              showSearch
-              style={{
-                width: 200,
-                height: 30,
-                marginTop: "10px",
-                marginRight: "10px",
-              }}
-              className="search-select"
-              placeholder="选择文章分类进行查询"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-            >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="tom">Tom</Option>
-            </Select>
-          </div>
+        <div className="recommend-article">
+         
           <div className="articles">
           <Spin className="loading" tip="Loading..." spinning={this.state.isLoading}>
          
@@ -56,7 +36,6 @@ export default class Article extends React.Component {
                   className="article-item"
                   key={index}
                 >
-                  {/* <p className="article-content">{item.article}</p> */}
                   <div className="bottom">
                     <div className="bottom-left">
                       <span>阅读量：{item.read}</span>

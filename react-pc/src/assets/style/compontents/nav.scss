@@ -15,11 +15,14 @@
     }
   }
   .nav-right {
- 
     width: 12%;
     display: flex;
     justify-content: space-between;
-    
+    .user-avatar{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
     .register-btn{
       color: #fff;
       background-color: #67C23A;

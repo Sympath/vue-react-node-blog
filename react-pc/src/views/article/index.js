@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Select, Card, Spin } from "antd";
+import { Card, Spin } from "antd";
 import { getArticleList } from "../../api/api";
 
 import "../../assets/style/pages/article.scss";
-
-const { Option } = Select;
 
 export default class Article extends React.Component {
   constructor() {
@@ -21,28 +19,9 @@ export default class Article extends React.Component {
   render() {
     return (
       <>
+
         <div className="article">
-          <div className="article-search">
-            <Select
-              showSearch
-              style={{
-                width: 200,
-                height: 30,
-                marginTop: "10px",
-                marginRight: "10px",
-              }}
-              className="search-select"
-              placeholder="选择文章分类进行查询"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-            >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="tom">Tom</Option>
-            </Select>
-          </div>
+          
           <div className="articles">
           <Spin className="loading" tip="Loading..." spinning={this.state.isLoading}>
          
@@ -51,7 +30,7 @@ export default class Article extends React.Component {
                 <Card
                   title={item.title}
                   extra={
-                    <Link to={`/detail/${item._id}`}>查看文章</Link>
+                    <Link to={`/detail/${item._id}`} style={{fontWeight:700}}>查看文章</Link>
                   }
                   className="article-item"
                   key={index}

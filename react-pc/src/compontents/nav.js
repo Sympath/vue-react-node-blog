@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, HashRouter as Router } from "react-router-dom";
 import { Button, Modal, Input, message } from "antd";
+import { Avatar, Image } from 'antd';
 import {
   LoginOutlined,
   FireOutlined,
@@ -15,7 +16,7 @@ import {
 } from "@ant-design/icons";
 import "../assets/style/compontents/nav.scss";
 import { userLogin, userRegister, userGithubLogin } from "../api/api";
-import { setLocalStorage } from "../utils/local-storage";
+import { setLocalStorage,getLocalStorage } from "../utils/local-storage";
 import config from "../utils/config";
 import { getQueryStringByName } from "../utils/utils";
 
@@ -29,6 +30,7 @@ export default class Nav extends React.Component {
       password: "",
       nackname: "",
       code: "",
+      btnIsShow:true
     };
     this._login = this._login.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -39,42 +41,52 @@ export default class Nav extends React.Component {
       <div className="nav">
         <Router>
           <div className="nav-left">
-            <NavLink to="/recommend" style={{ fontWeight: 700 }}>
+            <NavLink to="/recommend" style={{ fontWeight: 600}}>
               <FireOutlined />
-              <span>博主推荐</span>
+              <span style={{fontSize:18}}>博主推荐</span>
             </NavLink>
-            <NavLink to="/article" style={{ fontWeight: 700 }}>
+            <NavLink to="/article" style={{ fontWeight: 600 }}>
               <ReadOutlined />
-              <span> 技术文章</span>
+              <span style={{fontSize:18}}> 技术文章</span>
             </NavLink>
-            <NavLink to="/project" style={{ fontWeight: 700 }}>
+            <NavLink to="/project" style={{ fontWeight: 600 }}>
               <ProjectOutlined />
-              <span> 项目源码</span>
+              <span style={{fontSize:18}}> 项目源码</span>
             </NavLink>
-            <NavLink to="/message" style={{ fontWeight: 700 }}>
+            <NavLink to="/message" style={{ fontWeight: 600 }}>
               <MessageOutlined />
-              <span>给我留言</span>
+              <span style={{fontSize:18}}>给我留言</span>
             </NavLink>
-            <NavLink to="/website" style={{ fontWeight: 700 }}>
+            <NavLink to="/website" style={{ fontWeight: 600 }}>
               <ChromeOutlined />
-              <span>关于网站</span>
+              <span style={{fontSize:18}}>关于网站</span>
             </NavLink>
-            <NavLink to="/blogger" style={{ fontWeight: 700 }}>
+            <NavLink to="/blogger" style={{ fontWeight: 600 }}>
               <UserOutlined />
-              <span>关于博主</span>
+              <span style={{fontSize:18}}>关于博主</span>
             </NavLink>
           </div>
-          <div className="nav-right">
+          <div className="nav-right" >
             <Button
+              style={{display:this.state.btnIsShow?'block':'none'}}
               className="login-btn"
               type="primary"
               onClick={this.loginModelShow}
             >
               <LoginOutlined />登 录
             </Button>
-            <Button className="register-btn" onClick={this.registerModelShow}>
+            <Button style={{display:this.state.btnIsShow?'block':'none'}} className="register-btn" onClick={this.registerModelShow}>
               <LogoutOutlined />注 册
             </Button>
+            <div className="user-avatar"  style={{display:!this.state.btnIsShow?'flex':'none'}}>
+            <Avatar
+           
+            size="large"
+            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" 
+            />
+            </div>
+           
+
           </div>
 
           {/* 登录的model */}
@@ -115,7 +127,10 @@ export default class Nav extends React.Component {
                 >
                   登 录
                 </Button>
-                <Button style={{ width: "100%" }} onClick={this.handleOAuth}>
+                <Button style={{ width: "100%",background:'#67C23A' ,color:'#fff'}} onClick={this.handleOAuth}>
+                  QQ 扫码登录
+                </Button>
+                <Button style={{ width: "100%",marginTop:'20px' }} onClick={this.handleOAuth}>
                   github 授权登录
                 </Button>
               </div>
@@ -233,6 +248,7 @@ export default class Nav extends React.Component {
         account: "",
         password: "",
         nackname: "",
+        btnIsShow:false
       });
       message.success(res.data.message);
       console.log("2");
@@ -273,6 +289,8 @@ export default class Nav extends React.Component {
   };
 
   componentDidMount() {
+    // 检测本地是否有token
+    this.testToken()
     /**
      *  
      * // giuhub登录暂时废弃，科学上网现在都进不去了
@@ -307,4 +325,14 @@ export default class Nav extends React.Component {
    * 
    * 
    */
+
+  testToken=()=>{
+    console.log('33333333');
+    console.log(getLocalStorage('token'))
+    if(getLocalStorage('token').token && getLocalStorage('nackname').nackname&&getLocalStorage('user_id').user_id ){
+      this.setState({
+        btnIsShow:false
+      });
+    }
+  }
 }

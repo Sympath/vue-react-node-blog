@@ -4,17 +4,9 @@
     overflow-y: scroll;
     height: 100vh;
     background-color: #f4f5f5;
-    .project-search {
-      display: flex;
-      justify-content: flex-end;
-      width: 76.5%;
-      background-color: #fff;
-      position: fixed;
-      height: 50px;
-      z-index: 9;
-    }
+   
     .projects {
-      padding-top: 50px;
+      padding-top: 10px;
       .jump{
           color: #189EFF;
           cursor: pointer;
@@ -26,16 +18,11 @@
         margin-top: 10px;
         .ant-card-head-title {
           font-size: 18px;
-          font-weight: 800;
+          font-weight: 700;
         }
-        // .article-content {
-        //   height: 45px;
-        //   display: -webkit-box;
-        //   -webkit-box-orient: vertical;
-        //   -webkit-line-clamp: 2;
-        //   overflow: hidden;
-        //   text-indent: 25px;
-        // }
+        .ant-card-body{
+          padding: 15px 24px 5px 24px;
+        }
         .bottom {
           display: flex;
           justify-content: space-between;

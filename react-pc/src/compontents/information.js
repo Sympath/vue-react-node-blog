@@ -14,8 +14,8 @@ export default class Information extends React.Component {
   render() {
     return (
       <div className="information">
-        <Divider style={{ width: "80%" ,marginTop:"34px"}}>博主 · 简介</Divider>
-        <img src={this.props.bloggerInfor.image} alt="头像" />
+        <Divider style={{ width: "80%" ,marginTop:"34px"}}>博主</Divider>
+        {/* <img src={this.props.bloggerInfor.image} alt="头像" /> */}
         <h2>{this.props.bloggerInfor.name}</h2>
         <div className="infor-content">{this.props.bloggerInfor.motto}</div>
         <div className="product-nums">

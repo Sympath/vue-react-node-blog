@@ -21,27 +21,7 @@ export default class Article extends React.Component {
     return (
       <>
         <div className="project">
-          <div className="project-search">
-            <Select
-              showSearch
-              style={{
-                width: 200,
-                height: 30,
-                marginTop: "10px",
-                marginRight: "10px",
-              }}
-              className="search-select"
-              placeholder="选择文章分类进行查询"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-            >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="tom">Tom</Option>
-            </Select>
-          </div>
+          
           <div className="projects">
           <Spin className="loading" tip="Loading..."  spinning={this.state.isLoading}>
          
