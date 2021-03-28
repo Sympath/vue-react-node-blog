@@ -30,12 +30,14 @@ export default class Article extends React.Component {
                 <Card
                   title={item.title}
                   extra={
-                    <Link to={`/detail/${item._id}`} style={{fontWeight:700}}>查看文章</Link>
+                    <Link to={`/detail/${item._id}`}>查看文章</Link>
                   }
                   className="article-item"
                   key={index}
                 >
-                  {/* <p className="article-content">{item.article}</p> */}
+                  <p className="article-content"  dangerouslySetInnerHTML={{
+                __html: item.html
+              }}></p>
                   <div className="bottom">
                     <div className="bottom-left">
                       <span>阅读量：{item.read}</span>

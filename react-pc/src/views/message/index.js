@@ -80,7 +80,7 @@ export default class Message extends React.Component {
                   content={<p>{v.message_txt}</p>}
                   datetime={
                     <Tooltip title={v.message_time}>
-                      <span>{v.message_time}</span>
+                      <span style={{color:'#000'}}>{v.message_time}</span>
                     </Tooltip>
                   }
                 >
@@ -107,7 +107,7 @@ export default class Message extends React.Component {
                       content={<p>{value.secend_message_txt}</p>}
                       datetime={
                         <Tooltip title={value.secend_create_time}>
-                          <span>{value.secend_create_time}</span>
+                          <span style={{color:'#000'}}>{value.secend_create_time}</span>
                         </Tooltip>
                       }
                     >

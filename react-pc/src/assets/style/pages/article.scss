@@ -14,8 +14,13 @@
     .article-item {
       margin-top: 15px;
       .ant-card-head-title {
-        font-size: 18px;
-        font-weight: 700;
+        font-size: 20px;
+        font-weight: 900;
+
+      }
+      .article-content{
+        overflow: hidden;
+        height: 63px;
 
       }
       .ant-card-body{
