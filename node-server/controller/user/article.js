@@ -133,6 +133,7 @@ class Article {
         comment_txt: comment_txt,
         comment_time: comment_time,
         nackname: user.nackname,
+        title: article.title,
         id: id,
       });
       const new_article = await ArticleInformation.findByIdAndUpdate(

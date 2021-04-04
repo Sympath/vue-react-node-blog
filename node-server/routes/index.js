@@ -4,11 +4,15 @@ var uploadRouter = require('../utils/upload/qiniu');
 
 // 后台管理系统路由引入
 import adminLogin from "./admin/login";
+import adminEchart from "./admin/echart";
 import adminPersonal from "./admin/personal";
 import adminPublish from "./admin/publish";
 import adminArticle from "./admin/article";
 import adminProject from "./admin/project";
 import adminLink from "./admin/link";
+import adminUser from "./admin/user";
+import adminMessage from "./admin/comment";
+import adminComment from "./admin/message";
 import adminBlog from "./admin/blog";
 import Check from "../middlewares/check";
 
@@ -31,10 +35,14 @@ export default (app) => {
     //后台管理系统
     app.use("/admin", adminLogin);
     app.use("/admin",Check.checkToken, adminPersonal);  // token验证
+    app.use("/admin", adminEchart);
     app.use("/admin", adminPublish);
     app.use("/admin",adminArticle);
     app.use("/admin", adminProject);
     app.use("/admin", adminLink);
+    app.use("/admin", adminUser);
+    app.use("/admin", adminMessage);
+    app.use("/admin", adminComment);
     app.use("/admin", adminBlog);
 
     // pc/h5 用户前端

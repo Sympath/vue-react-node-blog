@@ -14,6 +14,7 @@ import {
   KeyOutlined,
   SmileOutlined,
 } from "@ant-design/icons";
+import dayjs from "dayjs";
 import "../assets/style/compontents/nav.scss";
 import { userLogin, userRegister, userGithubLogin } from "../api/api";
 import { setLocalStorage,getLocalStorage } from "../utils/local-storage";
@@ -265,6 +266,7 @@ export default class Nav extends React.Component {
       account: this.state.account,
       password: this.state.password,
       nackname: this.state.nackname,
+      register_time: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss")
     }).then((res) => {
       this.setState({
         isRegisterModalVisible: false,

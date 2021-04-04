@@ -2,8 +2,8 @@ import axios from "axios";
 import { Message } from "element-ui";
 
 const service = axios.create({
-  // baseURL: "http://localhost:3000", //本地
-  baseURL: "http://123.57.5.134:3000", //上线
+  baseURL: "http://localhost:3000", //本地
+  // baseURL: "http://123.57.5.134:3000", //上线
   timeout: 5000, // 请求超时时间
 });
 

@@ -21,6 +21,17 @@ export function uploadImage(data){
   });
 }
 
+// 首页 dashboard 折线图、图表等
+const echarts ='/admin/home/echarts'
+export function getDashboard(query){
+  return request({
+    url:echarts,
+    method:'get',
+    params:query
+  })
+}
+
+
 // 个人信息,获取PC以及H5的博主个人信息
 const blogger_infor ='/admin/personal/information'
 export function getBloggerInformation(query){
@@ -281,6 +292,63 @@ export function editLink(data){
     data:data
   })
 }
+
+//用户管理 获取前端用户列表
+const users ='/admin/user/list'
+export function getUserList(query){
+  return request({
+    url:users,
+    method:'get',
+    params:query
+  })
+}
+//用户管理 用户列表注销用户
+const d_user ='/admin/user/delete'
+export function deleteUser(query){
+  return request({
+    url:d_user,
+    method:'delete',
+    params:query
+  })
+}
+
+//用户管理 获取前端用户留言
+const messages ='/admin/message/list'
+export function getMessageList(query){
+  return request({
+    url:messages,
+    method:'get',
+    params:query
+  })
+}
+//用户管理 删除前端用户留言
+const d_message ='/admin/message/delete'
+export function deleteMessage(query){
+  return request({
+    url:d_message,
+    method:'delete',
+    params:query
+  })
+}
+// 用户管理 获取文章所有评论
+const comments ='/admin/comment/list'
+export function getCommentList(query){
+  return request({
+    url:comments,
+    method:'get',
+    params:query
+  })
+}
+// 用户管理 删除文章指定评论
+const d_comment ='/admin/comment/delete'
+export function deleteComment(query){
+  return request({
+    url:d_comment,
+    method:'delete',
+    params:query
+  })
+}
+
 
 // 后台管理，密码重置
 const reset = '/admin/reset'; 
