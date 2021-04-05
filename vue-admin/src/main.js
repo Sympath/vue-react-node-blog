@@ -16,6 +16,9 @@ import '@/assets/styles/index.scss'
 // 引入阿里巴巴矢量库图标
 import '@/assets/iconfont/iconfont.css';
 
+// 引入echarts
+import * as echarts from "echarts"
+Vue.prototype.$echarts = echarts
 
 
 Vue.config.productionTip = false
