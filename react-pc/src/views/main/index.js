@@ -6,7 +6,7 @@ import Tags from "../../compontents/tags";
 import Information from "../../compontents/information";
 import Nav from "../../compontents/nav";
 
-import { getBloggerInfor , getTypeArticleProjectNums} from "../../api/api";
+import { getBloggerInfor , getTypeArticleProjectNums,getBloggerFriendLink} from "../../api/api";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -23,7 +23,8 @@ export default class Home extends React.Component {
         article_nums:0,
         project_nums:0,
         type_nums:0
-      }
+      },
+      friendLink:[]
     };
   }
   render() {
@@ -39,7 +40,7 @@ export default class Home extends React.Component {
             </div>
             <div className="sider">
             <Information bloggerInfor={this.state.bloggerInfor} typartpronums={this.state.typartpronums} />
-              <Tags bloggerInfor={this.state.bloggerInfor}/>
+              <Tags bloggerInfor={this.state.bloggerInfor} friendLink={this.state.friendLink}/>
             </div>
           </div>
           <div className="footer"></div>
@@ -53,6 +54,16 @@ export default class Home extends React.Component {
     getBloggerInfor().then((res) => {
       this.setState({
         bloggerInfor: res.data[0],
+      });
+    });
+
+  }
+  // 获取友链信息
+  getBloggerSideFriend() {
+    getBloggerFriendLink().then((res) => {
+      console.log(res.data.list);
+      this.setState({
+        friendLink: res.data.list,
       });
     });
   }
@@ -70,6 +81,7 @@ export default class Home extends React.Component {
     openNotification();
     // 获取侧边栏博主信息
     this.getBloggerSideInfor();
+    this.getBloggerSideFriend();
     this.getSideTypArtProNums();
   }
 }

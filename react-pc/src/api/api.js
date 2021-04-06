@@ -183,3 +183,13 @@ export function replyMessage(data){
     data: data,
   });
 }
+
+// 获取友链
+const friend_link = '/user/link/list'; 
+export function getBloggerFriendLink(query) {
+  return request({
+    url: friend_link,
+    method: 'get',
+    params: query,
+  });
+}

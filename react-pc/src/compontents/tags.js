@@ -16,13 +16,13 @@ export default function Tags(props) {
           </Tag>
         );
       })}
-
+    
     <Divider style={{marginTop:'120px'}}>友情链接</Divider>
-      {props.bloggerInfor.label.map((item,index) => {
+      {props.friendLink.map((item,index) => {
         
         return (
           <Tag className="tag" color={colorss[Math.floor(Math.random()*10)]} key={index}>
-           刘强东的博客
+          {item.blog_name}
           </Tag>
         );
       })}
