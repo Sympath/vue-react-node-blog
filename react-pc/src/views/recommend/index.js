@@ -31,7 +31,7 @@ export default class Recommend extends React.Component {
                 <Card
                   title={item.title}
                   extra={
-                    <Link to={`/detail/article/${item._id}`}>查看文章</Link>
+                    <Link to={`/detail/${item._id}`}>查看文章</Link>
                   }
                   className="article-item"
                   key={index}

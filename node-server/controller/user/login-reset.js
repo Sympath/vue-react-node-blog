@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 // 引入全局配置的github信息(github授权登录那一块)
-const CONFIG = require('../../utils/github/config');
+const CONFIG = require("../../utils/github/config");
 
 // 引入node-fetch,使本机想github服务器发起请求
 import fetch from "node-fetch";
@@ -45,8 +45,8 @@ class UserLoginReset {
           status: 200,
           token: userToken,
           message: "登录成功!",
-          user_id:user._id,
-          nackname:user.nackname
+          user_id: user._id,
+          nackname: user.nackname,
         });
       }
     } catch (error) {}
@@ -161,59 +161,53 @@ class UserLoginReset {
   }
   // github登录
   async userGithubLogin(req, res) {
-      const code = req.body.code;
-      if(!code){
-        res.send({
-          message:'code缺失,请联系开发者',
-          status:411
-        })
-        return false;
-      }
+    const code = req.body.code;
+    if (!code) {
+      res.send({
+        message: "code缺失,请联系开发者",
+        status: 411,
+      });
+      return false;
+    }
 
-      //初始化一些值，准备向github服务器发起验证请求了 
-      const verify_path = CONFIG.GITHUB.access_token_url;
-      const infor_path = CONFIG.GITHUB.user_url;
-      let access_token= '';
-      const body = {
-        client_id: CONFIG.GITHUB.client_id,
-        client_secret: CONFIG.GITHUB.client_secret,
-        code: code,
-      };
-     
-      
-      // fetch node端使用fetch, 和github验证服务器进行交互
-     await fetch(verify_path, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', 
-        },
-        body: JSON.stringify(body),
+    //初始化一些值，准备向github服务器发起验证请求了
+    const verify_path = CONFIG.GITHUB.access_token_url;
+    const infor_path = CONFIG.GITHUB.user_url;
+    let access_token = "";
+    const body = {
+      client_id: CONFIG.GITHUB.client_id,
+      client_secret: CONFIG.GITHUB.client_secret,
+      code: code,
+    };
+
+    // fetch node端使用fetch, 和github验证服务器进行交互
+    await fetch(verify_path, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    })
+      .then((result) => {
+        return result.text();
       })
-        .then(result => {
-          return result.text();
-      }).then(body => {
-        console.log("body:",body);
-        const args = body.split('&');
-        const arg = args[0].split('=');
+      .then((body) => {
+        console.log("body:", body);
+        const args = body.split("&");
+        const arg = args[0].split("=");
         access_token = arg[1];
-      
-      })
+      });
 
-      // 初始化一些值
-        console.log(access_token,555555);
-        await fetch(infor_path,{
-          headers: { 'Authorization': 'token '+ access_token},
-        })
-        .then(result1 => {
-          console.log('res1:', result1);
-          return result1.json();
-        })
-        .then(response => {
-         console.log(response,'44444444444444');
-        })
-       
-      
-      
+    // 初始化一些值
+    console.log(access_token, 555555);
+    await fetch(infor_path, {
+      headers: { Authorization: "token " + access_token },
+    })
+      .then((result1) => {
+        console.log("res1:", result1);
+        return result1.json();
+      })
+      .then((response) => {});
   }
 }
 

@@ -4,7 +4,8 @@ import { message } from "antd";
 const service = axios.create({
   baseURL: "http://localhost:3000", //本地
   // baseURL: "http://172.28.75.196:3000", //局域网
-  // baseURL: "http://123.57.5.134:3000",
+  // baseURL: "http://123.57.5.134:3000",//上线(老服务器)
+  // baseURL: "http://47.95.234.230:3000", //上线(新服务器)
   timeout: 5000, // 请求超时时间
 });
 

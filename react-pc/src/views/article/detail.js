@@ -153,14 +153,6 @@ export default class ArticleDetail extends React.Component {
     message.warning("此功能开发中,预计6月份上线");
   };
   _delete(v) {
-    // deleteArticleComment({
-    //   id:v,
-    //   articleId:this.props.match.params.id,
-    //   userId:getLocalStorage('user_id').user_id
-    // }).then(res=>{
-    //   message.success(res.data.message);
-    // })
-    // this.init();
     message.warning("此功能开发中,预计6月份上线");
   }
   // 评论输入框双向绑定
@@ -171,17 +163,22 @@ export default class ArticleDetail extends React.Component {
   }
   // 发送评论
   sendComment = () => {
-    postArticleComment({
-      articleId: this.props.match.params.id,
-      userId: getLocalStorage("user_id").user_id,
-      comment_txt: this.state.comment_txt,
-      comment_time: this.state.comment_time,
-    }).then((res) => {
-      message.success(res.data.message);
-      this.setState({
-        comment_txt: "",
+    if (getLocalStorage("user_id").user_id) {
+      postArticleComment({
+        articleId: this.props.match.params.id,
+        userId: getLocalStorage("user_id").user_id,
+        comment_txt: this.state.comment_txt,
+        comment_time: this.state.comment_time,
+      }).then((res) => {
+        message.success(res.data.message);
+        this.setState({
+          comment_txt: "",
+        });
+        this.init();
       });
-      this.init();
-    });
+    }else{
+      message.warning("请登录后评论哦");
+    }
+    
   };
 }

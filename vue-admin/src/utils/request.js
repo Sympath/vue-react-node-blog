@@ -2,8 +2,8 @@ import axios from "axios";
 import { Message } from "element-ui";
 
 const service = axios.create({
-  baseURL: "http://localhost:3000", //本地
-  // baseURL: "http://123.57.5.134:3000", //上线
+  // baseURL: "http://localhost:3000", //本地
+  baseURL: "http://47.95.234.230:3000", //线上
   timeout: 5000, // 请求超时时间
 });
 
@@ -11,7 +11,7 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
-    config.headers["Authorization"] = 'Bearer ' + localStorage.Authorization;
+    config.headers["Authorization"] = "Bearer " + localStorage.Authorization;
     return config;
   },
   (error) => {
@@ -33,10 +33,10 @@ service.interceptors.response.use(
     } else if (res.status === 212) {
       Message.error(res.message);
       return Promise.reject("error");
-    }  else if (res.status === 510) {
+    } else if (res.status === 510) {
       Message.error(res.message);
       return Promise.reject("error");
-    }else {
+    } else {
       return response;
     }
   },
