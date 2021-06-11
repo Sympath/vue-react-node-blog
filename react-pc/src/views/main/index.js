@@ -104,7 +104,7 @@ const openNotification = () => {
   notification.open({
     message: "公告",
     description:
-      '你好',
+      '欢迎来到付金廷的博客网站',
     btn,
     key,
     onClose: close,

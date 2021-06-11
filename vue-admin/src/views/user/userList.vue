@@ -3,25 +3,24 @@
     <!-- 序号,用户_id,用户账号(account),昵称(nickname),性别,头像,注册时间,token,点赞,评论 -->
 
     <div class="conditions">
-        <el-input
-          v-model="account"
-          placeholder="请输入用户账号查询"
-          clearable
-        ></el-input>
-        <el-input
-          v-model="nackname"
-          placeholder="请输入用户昵称查询"
-          clearable
-        ></el-input>
-        <el-button type="primary" icon="el-icon-search" @click="_search"
-          >查询</el-button
-        >
+      <el-input
+        v-model="account"
+        placeholder="请输入用户账号查询"
+        clearable
+      ></el-input>
+      <el-input
+        v-model="nackname"
+        placeholder="请输入用户昵称查询"
+        clearable
+      ></el-input>
+      <el-button type="primary" icon="el-icon-search" @click="_search"
+        >查询</el-button
+      >
     </div>
 
     <el-table :data="List" border style="width: 100%" fit highlight-current-row>
       <el-table-column type="index" label="序号" width="60"> </el-table-column>
-      <el-table-column prop="_id" label="用户ID" width="240">
-      </el-table-column>
+      <el-table-column prop="_id" label="用户ID" width="240"> </el-table-column>
       <el-table-column prop="account" label="用户账号" width="200">
       </el-table-column>
       <el-table-column prop="nackname" label="用户昵称" width="260">
@@ -124,18 +123,16 @@ export default {
 </script>
 <style lang="scss">
 .user-list {
-  
-    .conditions {
-      width: 44%;
-      display: flex;
-      justify-content: space-between;
-      .el-input {
-        width: 250px;
-      }
-      .el-button {
-        margin-left: 2px;
-      }
-    
+  .conditions {
+    width: 44%;
+    display: flex;
+    justify-content: space-between;
+    .el-input {
+      width: 250px;
+    }
+    .el-button {
+      margin-left: 2px;
+    }
   }
   .el-table {
     margin-top: 20px;
@@ -146,4 +143,3 @@ export default {
   }
 }
 </style>
-
