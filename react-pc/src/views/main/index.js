@@ -1,12 +1,16 @@
 import React from "react";
 import RootRouter from "../../router/index";
-import {Button, notification } from "antd";
+import { Button, notification } from "antd";
 
 import Tags from "../../compontents/tags";
 import Information from "../../compontents/information";
 import Nav from "../../compontents/nav";
 
-import { getBloggerInfor , getTypeArticleProjectNums,getBloggerFriendLink} from "../../api/api";
+import {
+  getBloggerInfor,
+  getTypeArticleProjectNums,
+  getBloggerFriendLink,
+} from "../../api/api";
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -17,14 +21,15 @@ export default class Home extends React.Component {
         image:
           "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn21%2F446%2Fw640h606%2F20180423%2Fe1de-fzqvvsa0695367.jpg&refer=http%3A%2F%2Fn.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1618211280&t=44c267ade434e93aa5e7ffcaaa8fdf69",
         motto: "typescript大佬",
-        label:['学习','吃饭','睡觉','蹲坑'],
+        label: ["学习", "吃饭", "睡觉", "蹲坑"],
       },
-      typartpronums:{
-        article_nums:0,
-        project_nums:0,
-        type_nums:0
+      typartpronums: {
+        article_nums: 0,
+        project_nums: 0,
+        type_nums: 0,
       },
-      friendLink:[]
+      friendLink: [],
+      boxIsShow: false,
     };
   }
   render() {
@@ -32,18 +37,41 @@ export default class Home extends React.Component {
       <>
         <div className="main">
           <div className="header">
-              <Nav />
+            <Nav />
           </div>
           <div className="bodyer">
             <div className="content">
-            <RootRouter />
+              <RootRouter />
             </div>
             <div className="sider">
-            <Information bloggerInfor={this.state.bloggerInfor} typartpronums={this.state.typartpronums} />
-              <Tags bloggerInfor={this.state.bloggerInfor} friendLink={this.state.friendLink}/>
+              <Information
+                bloggerInfor={this.state.bloggerInfor}
+                typartpronums={this.state.typartpronums}
+              />
+              <Tags
+                bloggerInfor={this.state.bloggerInfor}
+                friendLink={this.state.friendLink}
+              />
             </div>
           </div>
           <div className="footer"></div>
+          {/* 在线聊天 */}
+          <div className="chat-box" draggable="true">
+            <img
+              src={require("../../assets/images/聊天.png").default}
+              width="60"
+              height="60"
+              alt="聊天盒子"
+              onClick={this.chatBoxShow}
+            />
+            <div
+              className="choose-chatways"
+              style={{ display: this.state.boxIsShow ? "flex" : "none" }}
+            >
+              <div onClick={this.intoSinglePage}>进入与博主私聊</div>
+              <div onClick={this.intoGroupPage}>进入与多人聊天</div>
+            </div>
+          </div>
         </div>
       </>
     );
@@ -56,7 +84,6 @@ export default class Home extends React.Component {
         bloggerInfor: res.data[0],
       });
     });
-
   }
   // 获取友链信息
   getBloggerSideFriend() {
@@ -68,13 +95,12 @@ export default class Home extends React.Component {
     });
   }
   // 获取分类数量，文章数量，项目数量
-  getSideTypArtProNums(){
-    getTypeArticleProjectNums().then(res=>{
+  getSideTypArtProNums() {
+    getTypeArticleProjectNums().then((res) => {
       this.setState({
-        typartpronums: res.data
+        typartpronums: res.data,
       });
-    })
-
+    });
   }
   componentWillMount() {
     // 弹出公告
@@ -83,6 +109,23 @@ export default class Home extends React.Component {
     this.getBloggerSideInfor();
     this.getBloggerSideFriend();
     this.getSideTypArtProNums();
+  }
+
+  // 聊天盒子显示
+  chatBoxShow = () => {
+    console.log('11')
+    this.setState({
+      boxIsShow: !this.state.boxIsShow,
+    });
+  };
+
+  // 进入单聊页面
+  intoSinglePage=()=>{
+    window.location.href="http://localhost:8080/#/singleChat"
+  }
+  // 进入群聊页面
+  intoGroupPage=()=>{
+    window.location.href="http://localhost:8080/#/groupChat"
   }
 }
 
@@ -103,11 +146,10 @@ const openNotification = () => {
   );
   notification.open({
     message: "公告",
-    description:
-      '欢迎来到付金廷的博客网站',
+    description: "欢迎来到付金廷的博客网站",
     btn,
     key,
     onClose: close,
-    duration:3
+    duration: 3,
   });
 };

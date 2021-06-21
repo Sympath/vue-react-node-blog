@@ -1,0 +1,20 @@
+
+    {
+        "data":[
+            {
+                "id":1,
+                "name":"发送表情",
+                "icon":"http://cdn.codeting.top/%E8%A1%A8%E6%83%85.png"
+            },
+            {
+                "id":2,
+                "name":"发送图片",
+                "icon":"http://cdn.codeting.top/%E5%9B%BE%E7%89%87.png"
+            },
+            {
+                "id":3,
+                "name":"历史消息",
+                "icon":"http://cdn.codeting.top/%E5%8E%86%E5%8F%B2.png"
+            }
+        ]
+    }

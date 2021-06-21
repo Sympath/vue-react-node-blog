@@ -1,7 +1,12 @@
 import React from "react"; //** 引入 支持jsx语法
 
 //** 将HashRouter引入并简化为router,将Route引入
-import { HashRouter as Router, Route, Switch,Redirect } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 //** 引入组件
 import Recommend from "../views/recommend";
@@ -11,7 +16,7 @@ import Message from "../views/message";
 import Website from "../views/website";
 import Blogger from "../views/blogger";
 
-import ArticleDetail from '../views/article/detail'
+import ArticleDetail from "../views/article/detail";
 
 //固定格式
 export default function RootRouter() {
